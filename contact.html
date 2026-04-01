@@ -111,10 +111,7 @@
         <p>The fastest way to reach us is by phone. For emergency towing and roadside assistance, call <a href="tel:+13474370185" style="color:#ff4a11;font-weight:700;">(347) 437-0185</a>. We answer every call, 24 hours a day, 7 days a week.</p>
 
         <h2>Send Us a Message</h2>
-        <form id="contactForm" action="https://formsubmit.co/jonuzie441@gmail.com" method="POST" style="background:#1a1a1a;padding:30px;margin-bottom:30px;">
-          <input type="hidden" name="_subject" value="New Towing Request - TowingServiceQueensNYC.com">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://towingservicequeensnyc.com/contact.html?sent=true">
+        <form id="contactForm" style="background:#1a1a1a;padding:30px;margin-bottom:30px;" onsubmit="return submitForm(event)">
           <input type="text" name="_honey" style="display:none">
 
           <div style="margin-bottom:15px;">
@@ -156,9 +153,44 @@
           <button type="submit" style="background:#ff4a11;color:#fff;border:none;padding:15px 40px;font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;cursor:pointer;width:100%;">Send Request</button>
         </form>
 
+        <div id="formStatus" style="display:none;text-align:center;padding:20px;margin-bottom:20px;font-family:'Oswald',sans-serif;font-size:1.1rem;"></div>
         <script>
-        if (window.location.search.includes('sent=true')) {
-          document.getElementById('contactForm').innerHTML = '<div style="text-align:center;padding:40px 0;"><h3 style="color:#ff4a11;font-family:Oswald,sans-serif;font-size:1.5rem;margin-bottom:10px;">Message Sent!</h3><p style="color:#fff;font-size:1.1rem;">We\'ll get back to you ASAP. For immediate help, call <a href="tel:+13474370185" style="color:#ff4a11;font-weight:700;">(347) 437-0185</a></p></div>';
+        async function submitForm(e) {
+          e.preventDefault();
+          var form = document.getElementById('contactForm');
+          var btn = form.querySelector('button[type="submit"]');
+          var status = document.getElementById('formStatus');
+          btn.textContent = 'SENDING...';
+          btn.disabled = true;
+          try {
+            var res = await fetch('/api/contact', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({
+                name: form.querySelector('[name="name"]').value,
+                phone: form.querySelector('[name="phone"]').value,
+                email: form.querySelector('[name="email"]').value,
+                service: form.querySelector('[name="service"]').value,
+                message: form.querySelector('[name="message"]').value
+              })
+            });
+            if (res.ok) {
+              form.innerHTML = '<div style="text-align:center;padding:40px 0;"><h3 style="color:#ff4a11;font-family:Oswald,sans-serif;font-size:1.5rem;margin-bottom:10px;">Message Sent!</h3><p style="color:#fff;font-size:1.1rem;">We\'ll get back to you ASAP. For immediate help, call <a href="tel:+13474370185" style="color:#ff4a11;font-weight:700;">(347) 437-0185</a></p></div>';
+            } else {
+              status.style.display = 'block';
+              status.style.color = '#ff4a11';
+              status.textContent = 'Something went wrong. Please call us at (347) 437-0185';
+              btn.textContent = 'SEND REQUEST';
+              btn.disabled = false;
+            }
+          } catch(err) {
+            status.style.display = 'block';
+            status.style.color = '#ff4a11';
+            status.textContent = 'Something went wrong. Please call us at (347) 437-0185';
+            btn.textContent = 'SEND REQUEST';
+            btn.disabled = false;
+          }
+          return false;
         }
         </script>
 
