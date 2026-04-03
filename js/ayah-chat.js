@@ -48,7 +48,7 @@
     #ayah-close:hover { color:white; }
 
     /* Messages */
-    #ayah-messages { flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:12px; background:#f9fafb; -webkit-overflow-scrolling:touch; }
+    #ayah-messages { flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:12px; background:#f9fafb; -webkit-overflow-scrolling:touch; justify-content:flex-end; }
     .ay-msg { max-width:85%; padding:12px 16px; border-radius:20px; font-size:15px; line-height:1.5; word-wrap:break-word; }
     .ay-msg-user { background:#d4a017; color:#1a1a2e; border-bottom-right-radius:4px; align-self:flex-end; }
     .ay-msg-ai { background:white; color:#1a1a2e; border:1px solid #e5e7eb; border-bottom-left-radius:4px; align-self:flex-start; box-shadow:0 1px 3px rgba(0,0,0,0.05); }
