@@ -683,9 +683,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .feature-icon {
-  width: 55px;
-  height: 55px;
-  background: var(--dark);
+  width: 56px;
+  height: 56px;
+  background: rgba(212,160,23,0.1);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
