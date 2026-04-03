@@ -1,5 +1,10 @@
-/* Tawk.to — visitor tracking only, chat hidden */
+/* Tawk.to — visitor tracking only, widget completely hidden */
 (function(){
+  // Force hide with CSS immediately
+  var css = document.createElement('style');
+  css.textContent = '#tawk-default-container, .tawk-min-container, iframe[title="chat widget"], .widget-visible { display:none !important; visibility:hidden !important; opacity:0 !important; pointer-events:none !important; width:0 !important; height:0 !important; }';
+  document.head.appendChild(css);
+
   var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
   Tawk_API.onLoad = function(){ Tawk_API.hideWidget(); };
   var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
