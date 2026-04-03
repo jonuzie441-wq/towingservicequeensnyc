@@ -1,0 +1,24 @@
+{
+  "name": "towingservicequeensnyc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonuzie441-wq/towingservicequeensnyc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jonuzie441-wq/towingservicequeensnyc/issues"
+  },
+  "homepage": "https://github.com/jonuzie441-wq/towingservicequeensnyc#readme",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.82.0"
+  }
+}
