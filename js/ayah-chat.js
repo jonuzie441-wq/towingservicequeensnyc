@@ -88,7 +88,7 @@
 
       for (const msg of messages) {
         const cls = msg.role === 'user' ? 'ayah-msg-user' : 'ayah-msg-ai';
-        const text = msg.content.replace(/\[DISPATCH:[^\]]*\]/g, '').trim();
+        const text = msg.content.replace(/\[DISPATCH:[^\]]*\]/g, '').replace(/\[CALLBACK:[^\]]*\]/g, '').trim();
         if (text) html += `<div class="ayah-msg ${cls}">${escapeHtml(text)}</div>`;
       }
 

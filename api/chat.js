@@ -54,6 +54,12 @@ DISPATCH (need: name, phone, pickup, service, price. Dropoff only if towing):
 "Alright [name], [Steve/Alex/Leah] is heading out to you. About 45 min but they usually get there faster. They'll call you when they're close 👊"
 Hidden tag: [DISPATCH: name=X, phone=X, pickup=X, dropoff=X, vehicle=X, service=X, price=X, driver=X]
 
+DRIVER CALLBACK (when sending to boss/driver for pricing negotiation):
+Say: "Let me have the driver call you shortly to work something out."
+Do NOT say "10-15 minutes" or make time promises. Just "shortly."
+Hidden tag: [CALLBACK: name=X, phone=X, pickup=X, dropoff=X, vehicle=X, note=X]
+This tag notifies the boss so they actually call.
+
 CANCELLATIONS: Don't cancel instantly. "Let me check if the driver already left — hold on" then "You sure you wanna cancel?"
 
 Phone: (347) 437-0185
@@ -137,6 +143,17 @@ export default async function handler(req, res) {
       const [, name, phone, pickup, dropoff, vehicle, service, price, driver] = dispatchMatch;
       await notifyTelegram(
         `🚛 JOB BOOKED\nName: ${name.trim()}\nPhone: ${phone.trim()}\nPickup: ${pickup.trim()}\nDropoff: ${dropoff.trim()}\nVehicle: ${vehicle.trim()}\nService: ${service.trim()}\nPrice: ${price.trim()}\nDriver: ${driver.trim()}\nTime: ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })}`
+      );
+    }
+
+    // Check for callback request (sent to driver/boss for pricing)
+    const callbackMatch = aiText.match(
+      /\[CALLBACK:\s*name=([^,]*),\s*phone=([^,]*),\s*pickup=([^,]*),\s*dropoff=([^,]*),\s*vehicle=([^,]*),\s*note=([^\]]*)\]/
+    );
+    if (callbackMatch) {
+      const [, name, phone, pickup, dropoff, vehicle, note] = callbackMatch;
+      await notifyTelegram(
+        `📞 CALLBACK NEEDED\nCustomer wants a call about pricing!\nName: ${name.trim()}\nPhone: ${phone.trim()}\nPickup: ${pickup.trim()}\nDropoff: ${dropoff.trim()}\nVehicle: ${vehicle.trim()}\nNote: ${note.trim()}\nTime: ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })}\n\nCALL THEM NOW!`
       );
     }
 
