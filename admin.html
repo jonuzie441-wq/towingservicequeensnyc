@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — Towing Service Queens NYC</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:#0a0a0a; color:#fff; min-height:100vh; }
+  a { color:#d4a017; text-decoration:none; }
+
+  /* Login */
+  #login { display:flex; align-items:center; justify-content:center; min-height:100vh; padding:20px; }
+  #login-box { background:#141414; border-radius:16px; padding:40px; width:100%; max-width:380px; }
+  #login-box h1 { font-size:24px; margin-bottom:8px; }
+  #login-box h1 span { color:#d4a017; }
+  #login-box p { color:#888; font-size:14px; margin-bottom:24px; }
+  #login-box input { width:100%; padding:14px 16px; background:#fff; border:2px solid #333; border-radius:8px; color:#000; font-size:16px; margin-bottom:16px; outline:none; }
+  #login-box input:focus { border-color:#d4a017; }
+  #login-box button { width:100%; padding:14px; background:#d4a017; color:#0a0a0a; border:none; border-radius:8px; font-size:16px; font-weight:700; cursor:pointer; }
+  #login-box button:hover { background:#b8860b; }
+
+  /* Dashboard */
+  #dashboard { display:none; }
+  .topbar { background:#141414; border-bottom:1px solid #222; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .topbar h1 { font-size:20px; } .topbar h1 span { color:#d4a017; }
+  .topbar button { background:#d4a017; color:#0a0a0a; border:none; padding:8px 16px; border-radius:6px; font-weight:600; cursor:pointer; font-size:14px; }
+
+  .tabs { background:#141414; padding:0 24px; display:flex; gap:4px; border-bottom:1px solid #222; overflow-x:auto; }
+  .tab { padding:14px 20px; font-size:14px; font-weight:500; cursor:pointer; border-bottom:2px solid transparent; color:#888; white-space:nowrap; }
+  .tab.active { color:#d4a017; border-bottom-color:#d4a017; }
+  .tab:hover { color:#fff; }
+
+  .content { padding:24px; max-width:1200px; margin:0 auto; }
+
+  /* Stats */
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:16px; margin-bottom:24px; }
+  .stat { background:#141414; border-radius:12px; padding:20px; }
+  .stat-label { font-size:12px; color:#888; margin-bottom:4px; }
+  .stat-value { font-size:28px; font-weight:800; }
+  .stat-value.gold { color:#d4a017; }
+
+  /* Table */
+  .table-wrap { background:#141414; border-radius:12px; overflow:hidden; }
+  .table-header { padding:16px 20px; border-bottom:1px solid #222; font-weight:600; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th { text-align:left; padding:12px 16px; color:#888; font-weight:500; border-bottom:1px solid #222; font-size:12px; }
+  td { padding:12px 16px; border-bottom:1px solid #1a1a1a; }
+  tr:hover { background:#1a1a1a; }
+  .badge { display:inline-block; padding:2px 10px; border-radius:99px; font-size:12px; background:#222; color:#ccc; }
+  .badge-gold { background:rgba(212,160,23,0.15); color:#d4a017; }
+  .call-btn { background:#22c55e; color:#fff; padding:4px 12px; border-radius:99px; font-size:12px; text-decoration:none; }
+  .empty { padding:40px; text-align:center; color:#555; }
+
+  /* Source bars */
+  .source-list { display:flex; flex-direction:column; gap:8px; }
+  .source-row { display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px solid #1a1a1a; }
+  .source-name { font-size:14px; color:#ccc; text-transform:capitalize; }
+  .source-bar-wrap { width:100px; background:#222; border-radius:4px; height:8px; margin:0 12px; }
+  .source-bar { background:#d4a017; height:8px; border-radius:4px; }
+  .source-count { font-size:14px; font-family:monospace; color:#fff; min-width:30px; text-align:right; }
+
+  @media(max-width:600px) {
+    .content { padding:16px; }
+    table { font-size:12px; }
+    th, td { padding:8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Login Screen -->
+<div id="login">
+  <div id="login-box">
+    <h1><span>Towing Queens</span> Admin</h1>
+    <p>Enter your admin password</p>
+    <form onsubmit="event.preventDefault();doLogin()">
+      <input type="password" id="pw" placeholder="Password..." autofocus>
+      <button type="submit">Access Dashboard</button>
+    </form>
+  </div>
+</div>
+
+<!-- Dashboard -->
+<div id="dashboard">
+  <div class="topbar">
+    <h1><span>Towing Queens</span> CRM</h1>
+    <button onclick="loadData()">Refresh</button>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('overview',this)">Overview</div>
+    <div class="tab" onclick="switchTab('leads',this)">Leads</div>
+    <div class="tab" onclick="switchTab('contacts',this)">Contacts</div>
+    <div class="tab" onclick="switchTab('analytics',this)">Analytics</div>
+  </div>
+
+  <div class="content">
+    <!-- Overview -->
+    <div id="tab-overview">
+      <div class="stats">
+        <div class="stat"><div class="stat-label">Total Leads</div><div class="stat-value gold" id="s-leads">0</div></div>
+        <div class="stat"><div class="stat-label">Contact Messages</div><div class="stat-value" id="s-contacts">0</div></div>
+        <div class="stat"><div class="stat-label">Page Views</div><div class="stat-value" id="s-pageviews">0</div></div>
+        <div class="stat"><div class="stat-label">Call Clicks</div><div class="stat-value gold" id="s-calls">0</div></div>
+        <div class="stat"><div class="stat-label">Unique Sessions</div><div class="stat-value" id="s-sessions">0</div></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+        <div class="table-wrap" style="padding:20px;">
+          <div style="font-weight:600;font-size:14px;margin-bottom:12px;color:#888;">Traffic Sources</div>
+          <div class="source-list" id="sources-list"></div>
+        </div>
+        <div class="table-wrap" style="padding:20px;">
+          <div style="font-weight:600;font-size:14px;margin-bottom:12px;color:#888;">Devices</div>
+          <div class="source-list" id="devices-list"></div>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <div class="table-header">Recent Leads</div>
+        <div id="recent-leads"></div>
+      </div>
+    </div>
+
+    <!-- Leads Tab -->
+    <div id="tab-leads" style="display:none;">
+      <div class="table-wrap">
+        <div class="table-header">All Leads (<span id="leads-count">0</span>)</div>
+        <div style="overflow-x:auto;" id="leads-table"></div>
+      </div>
+    </div>
+
+    <!-- Contacts Tab -->
+    <div id="tab-contacts" style="display:none;">
+      <div class="table-wrap">
+        <div class="table-header">Contact Form Messages (<span id="contacts-count">0</span>)</div>
+        <div style="overflow-x:auto;" id="contacts-table"></div>
+      </div>
+    </div>
+
+    <!-- Analytics Tab -->
+    <div id="tab-analytics" style="display:none;">
+      <div class="table-wrap" style="padding:20px;margin-bottom:16px;">
+        <div style="font-weight:600;font-size:14px;margin-bottom:12px;color:#888;">Top Pages</div>
+        <div id="top-pages"></div>
+      </div>
+      <div class="table-wrap" style="padding:20px;">
+        <div style="font-weight:600;font-size:14px;margin-bottom:12px;color:#888;">Call Clicks by Source</div>
+        <div id="call-sources"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var API_KEY = '';
+var DATA = { leads:[], analytics:[], contacts:[] };
+
+function doLogin() {
+  API_KEY = document.getElementById('pw').value;
+  if (!API_KEY) return;
+  document.getElementById('login').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  loadData();
+}
+
+function switchTab(name, el) {
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  el.classList.add('active');
+  ['overview','leads','contacts','analytics'].forEach(function(t){
+    document.getElementById('tab-'+t).style.display = t===name ? 'block' : 'none';
+  });
+}
+
+async function loadData() {
+  try {
+    var r = await fetch('/api/admin', { headers:{ 'x-api-key': API_KEY } });
+    if (!r.ok) { alert('Invalid password or API error'); return; }
+    DATA = await r.json();
+    renderAll();
+  } catch(e) { alert('Failed to load data'); }
+}
+
+function renderAll() {
+  var leads = DATA.leads || [];
+  var contacts = DATA.contacts || [];
+  var analytics = DATA.analytics || [];
+
+  // Stats
+  var pageviews = analytics.filter(function(a){ return a.event_type === 'pageview'; });
+  var calls = analytics.filter(function(a){ return a.event_type === 'call'; });
+  var sessions = {};
+  pageviews.forEach(function(p){ if(p.session_id) sessions[p.session_id]=1; });
+
+  document.getElementById('s-leads').textContent = leads.length;
+  document.getElementById('s-contacts').textContent = contacts.length;
+  document.getElementById('s-pageviews').textContent = pageviews.length;
+  document.getElementById('s-calls').textContent = calls.length;
+  document.getElementById('s-sessions').textContent = Object.keys(sessions).length;
+
+  // Sources
+  var sources = {};
+  pageviews.forEach(function(p){ var s=p.source||'direct'; sources[s]=(sources[s]||0)+1; });
+  var srcHtml = '';
+  var srcMax = Math.max.apply(null, Object.values(sources).concat([1]));
+  Object.entries(sources).sort(function(a,b){return b[1]-a[1];}).forEach(function(e){
+    srcHtml += '<div class="source-row"><span class="source-name">'+esc(e[0])+'</span><div class="source-bar-wrap"><div class="source-bar" style="width:'+(e[1]/srcMax*100)+'%"></div></div><span class="source-count">'+e[1]+'</span></div>';
+  });
+  document.getElementById('sources-list').innerHTML = srcHtml || '<div class="empty">No data yet</div>';
+
+  // Devices
+  var devices = {};
+  pageviews.forEach(function(p){ var d=p.device||'unknown'; devices[d]=(devices[d]||0)+1; });
+  var devHtml = '';
+  Object.entries(devices).sort(function(a,b){return b[1]-a[1];}).forEach(function(e){
+    devHtml += '<div class="source-row"><span class="source-name">'+esc(e[0])+'</span><span class="source-count">'+e[1]+'</span></div>';
+  });
+  document.getElementById('devices-list').innerHTML = devHtml || '<div class="empty">No data yet</div>';
+
+  // Recent leads
+  var recentHtml = '';
+  leads.slice(0,5).forEach(function(l){
+    recentHtml += '<div style="padding:12px 20px;border-bottom:1px solid #1a1a1a;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-weight:500;">'+(esc(l.name)||'Unknown')+'</div><div style="font-size:12px;color:#888;">'+(esc(l.phone)||'')+ ' · ' +esc(l.source||'website')+' · '+formatDate(l.created_at)+'</div>'+(l.message?'<div style="font-size:12px;color:#aaa;margin-top:4px;">'+esc(l.message).slice(0,120)+'</div>':'')+'</div>'+(l.phone?'<a href="tel:'+l.phone+'" class="call-btn">Call</a>':'')+'</div>';
+  });
+  document.getElementById('recent-leads').innerHTML = recentHtml || '<div class="empty">No leads yet</div>';
+
+  // Leads table
+  document.getElementById('leads-count').textContent = leads.length;
+  var ltHtml = '<table><thead><tr><th>Name</th><th>Phone</th><th>Message</th><th>Source</th><th>Page</th><th>Date</th><th></th></tr></thead><tbody>';
+  leads.forEach(function(l){
+    ltHtml += '<tr><td>'+(esc(l.name)||'—')+'</td><td style="font-family:monospace;">'+(esc(l.phone)||'—')+'</td><td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+(esc(l.message)||'—')+'</td><td><span class="badge badge-gold">'+esc(l.source||'website')+'</span></td><td style="font-size:12px;color:#888;">'+esc(l.page||'/')+'</td><td style="font-size:12px;color:#888;">'+formatDate(l.created_at)+'</td><td>'+(l.phone?'<a href="tel:'+l.phone+'" class="call-btn">Call</a>':'')+'</td></tr>';
+  });
+  ltHtml += '</tbody></table>';
+  document.getElementById('leads-table').innerHTML = leads.length ? ltHtml : '<div class="empty">No leads yet</div>';
+
+  // Contacts table
+  document.getElementById('contacts-count').textContent = contacts.length;
+  var ctHtml = '<table><thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Service</th><th>Message</th><th>Date</th><th></th></tr></thead><tbody>';
+  contacts.forEach(function(c){
+    ctHtml += '<tr><td>'+(esc(c.name)||'—')+'</td><td style="font-family:monospace;">'+(esc(c.phone)||'—')+'</td><td>'+esc(c.email||'—')+'</td><td>'+esc(c.service||'—')+'</td><td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+esc(c.message||'—')+'</td><td style="font-size:12px;color:#888;">'+formatDate(c.created_at)+'</td><td>'+(c.phone?'<a href="tel:'+c.phone+'" class="call-btn">Call</a>':'')+'</td></tr>';
+  });
+  ctHtml += '</tbody></table>';
+  document.getElementById('contacts-table').innerHTML = contacts.length ? ctHtml : '<div class="empty">No contact messages yet</div>';
+
+  // Top pages
+  var pages = {};
+  pageviews.forEach(function(p){ var pg=p.path||'/'; pages[pg]=(pages[pg]||0)+1; });
+  var pgHtml = '';
+  Object.entries(pages).sort(function(a,b){return b[1]-a[1];}).slice(0,20).forEach(function(e,i){
+    pgHtml += '<div class="source-row"><span style="color:#555;font-size:12px;width:24px;">'+(i+1)+'.</span><span class="source-name" style="font-family:monospace;font-size:13px;">'+esc(e[0])+'</span><span class="source-count">'+e[1]+'</span></div>';
+  });
+  document.getElementById('top-pages').innerHTML = pgHtml || '<div class="empty">No page view data yet</div>';
+
+  // Call sources
+  var callSrc = {};
+  calls.forEach(function(c){ var s=c.source||'direct'; callSrc[s]=(callSrc[s]||0)+1; });
+  var csHtml = '';
+  Object.entries(callSrc).sort(function(a,b){return b[1]-a[1];}).forEach(function(e){
+    csHtml += '<div class="source-row"><span class="source-name">'+esc(e[0])+'</span><span class="source-count" style="color:#d4a017;font-weight:700;">'+e[1]+'</span></div>';
+  });
+  document.getElementById('call-sources').innerHTML = csHtml || '<div class="empty">No call data yet</div>';
+}
+
+function esc(s) { if(!s) return ''; var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+function formatDate(d) { if(!d) return ''; try { return new Date(d).toLocaleString(); } catch(e) { return d; } }
+</script>
+</body>
+</html>
