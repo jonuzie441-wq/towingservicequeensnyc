@@ -1,5 +1,3 @@
-import Anthropic from '@anthropic-ai/sdk';
-
 const SYSTEM_PROMPT = `You're Ayah, a girl who dispatches for Towing Service Queens NYC. Queens born, Queens raised. You're confident, a little sassy, funny when the moment calls for it, and you don't take shit. Think of a smart girl from Queens who knows her job and doesn't let people play her.
 
 PERSONALITY:
@@ -83,35 +81,49 @@ export default async function handler(req, res) {
 
   try {
     const { messages } = req.body;
-    const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
     // Convert messages to Anthropic format
     const anthropicMessages = [];
     for (const msg of messages) {
       if (msg.role === 'user' || msg.role === 'assistant') {
-        const text = msg.parts?.map(p => p.text || '').join('') || msg.content || '';
+        const text = msg.parts ? msg.parts.map(p => p.text || '').join('') : (msg.content || '');
         if (text) anthropicMessages.push({ role: msg.role, content: text });
       }
     }
 
-    // Remove leading assistant messages (Anthropic requires user first)
+    // Anthropic requires user message first
     while (anthropicMessages.length > 0 && anthropicMessages[0].role === 'assistant') {
       anthropicMessages.shift();
     }
-
     if (anthropicMessages.length === 0) {
       anthropicMessages.push({ role: 'user', content: 'Hi' });
     }
 
-    const response = await client.messages.create({
-      model: 'claude-haiku-4-5-20241022',
-      max_tokens: 120,
-      temperature: 0.75,
-      system: SYSTEM_PROMPT,
-      messages: anthropicMessages,
+    // Call Anthropic API directly with fetch
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': process.env.ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20241022',
+        max_tokens: 120,
+        temperature: 0.75,
+        system: SYSTEM_PROMPT,
+        messages: anthropicMessages,
+      }),
     });
 
-    const aiText = response.content[0]?.text || '';
+    if (!response.ok) {
+      const err = await response.text();
+      console.error('Anthropic API error:', response.status, err);
+      return res.status(500).json({ error: 'Chat failed', details: err });
+    }
+
+    const data = await response.json();
+    const aiText = data.content && data.content[0] ? data.content[0].text : '';
 
     // Check for dispatch
     const dispatchMatch = aiText.match(
@@ -130,12 +142,11 @@ export default async function handler(req, res) {
       await notifyTelegram(`❌ JOB CANCELLED\n${aiText}`);
     }
 
-    // Stream-like response (Vercel serverless can't do true streaming easily, return full response)
-    // Format as AI SDK stream protocol
+    // Return in stream-like format for the chat widget
     res.setHeader('Content-Type', 'text/plain; charset=utf-8');
     res.status(200);
     res.write('0:' + JSON.stringify(aiText) + '\n');
-    res.write('d:{"finishReason":"stop","usage":{"promptTokens":0,"completionTokens":0}}\n');
+    res.write('d:{"finishReason":"stop"}\n');
     res.end();
   } catch (error) {
     console.error('Chat error:', error);
