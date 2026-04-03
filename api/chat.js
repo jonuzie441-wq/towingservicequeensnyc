@@ -81,6 +81,9 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
+    // 3 second delay to feel like a real person typing
+    await new Promise(resolve => setTimeout(resolve, 3000));
+
     const { messages } = req.body;
 
     // Convert messages to Anthropic format
