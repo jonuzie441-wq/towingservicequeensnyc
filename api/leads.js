@@ -25,12 +25,12 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Name or phone required' });
     }
 
-    // Save to Supabase (same database as contact form)
+    // Save to Supabase
     const supabaseUrl = process.env.SUPABASE_URL;
     const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
 
     if (supabaseUrl && supabaseKey) {
-      await fetch(`${supabaseUrl}/rest/v1/leads`, {
+      const r = await fetch(`${supabaseUrl}/rest/v1/leads`, {
         method: 'POST',
         headers: {
           'apikey': supabaseKey,
@@ -45,9 +45,13 @@ export default async function handler(req, res) {
           message: message || '',
           source: source || 'website',
           page: page || '/',
-          created_at: new Date().toISOString(),
         }),
-      }).catch(() => {});
+      });
+
+      if (!r.ok) {
+        const err = await r.text();
+        console.error('Supabase leads error:', r.status, err);
+      }
     }
 
     // Send Telegram notification
@@ -58,6 +62,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ success: true });
   } catch (error) {
+    console.error('Leads error:', error);
     return res.status(500).json({ error: 'Failed to save lead' });
   }
 }
