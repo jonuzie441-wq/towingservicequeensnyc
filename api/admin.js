@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
 
-  const results = { leads: [], analytics: [], contacts: [] };
+  const results = { leads: [], analytics: [], contacts: [], chats: [] };
 
   if (supabaseUrl && supabaseKey) {
     // Fetch leads
@@ -30,6 +30,14 @@ export default async function handler(req, res) {
         headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` }
       });
       if (r.ok) results.analytics = await r.json();
+    } catch(e) {}
+
+    // Fetch chats
+    try {
+      const r = await fetch(`${supabaseUrl}/rest/v1/chats?order=created_at.desc&limit=500`, {
+        headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` }
+      });
+      if (r.ok) results.chats = await r.json();
     } catch(e) {}
 
     // Fetch contact messages (existing table)

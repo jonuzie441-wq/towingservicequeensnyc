@@ -61,6 +61,24 @@ async function saveLead(lead) {
   } catch(e) { console.error('Save lead error:', e); }
 }
 
+async function saveChat(sessionId, role, content) {
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
+  if (!supabaseUrl || !supabaseKey) return;
+  try {
+    await fetch(`${supabaseUrl}/rest/v1/chats`, {
+      method: 'POST',
+      headers: {
+        'apikey': supabaseKey,
+        'Authorization': `Bearer ${supabaseKey}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal',
+      },
+      body: JSON.stringify({ session_id: sessionId, role, content }),
+    });
+  } catch(e) {}
+}
+
 async function notifyTelegram(text) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
@@ -85,7 +103,17 @@ export default async function handler(req, res) {
     // 3 second delay to feel like a real person typing
     await new Promise(resolve => setTimeout(resolve, 3000));
 
-    const { messages } = req.body;
+    const { messages, sessionId } = req.body;
+    const sid = sessionId || ('chat_' + Date.now());
+
+    // Save last user message
+    const lastMsg = messages[messages.length - 1];
+    if (lastMsg && lastMsg.role === 'user') {
+      const userText = lastMsg.parts ? lastMsg.parts.map(p => p.text || '').join('') : (lastMsg.content || '');
+      if (userText && userText.toLowerCase() !== 'hi') {
+        saveChat(sid, 'user', userText).catch(() => {});
+      }
+    }
 
     // Convert messages to Anthropic format
     const anthropicMessages = [];
@@ -129,6 +157,12 @@ export default async function handler(req, res) {
 
     const data = await response.json();
     const aiText = data.content && data.content[0] ? data.content[0].text : '';
+
+    // Save Ayah's response
+    const cleanText = aiText.replace(/\[DISPATCH:[^\]]*\]/g, '').replace(/\[CALLBACK:[^\]]*\]/g, '').trim();
+    if (cleanText) {
+      saveChat(sid, 'assistant', cleanText).catch(() => {});
+    }
 
     // Check for dispatch
     const dispatchMatch = aiText.match(

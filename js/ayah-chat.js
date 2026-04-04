@@ -11,6 +11,7 @@
   let hasGreeted = false;
   let previewDismissed = false;
   let showPreview = false;
+  var chatSessionId = 'chat_' + Date.now() + '_' + Math.random().toString(36).slice(2,8);
 
   const style = document.createElement('style');
   style.textContent = `
@@ -201,6 +202,7 @@
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({
+          sessionId: chatSessionId,
           messages: messages.map(function(m) {
             return { role:m.role, id:Math.random().toString(36).slice(2), parts:[{type:'text',text:m.content}] };
           })

@@ -93,6 +93,7 @@
     <div class="tab active" onclick="switchTab('overview',this)">Overview</div>
     <div class="tab" onclick="switchTab('leads',this)">Leads</div>
     <div class="tab" onclick="switchTab('contacts',this)">Contacts</div>
+    <div class="tab" onclick="switchTab('chats',this)">Ayah Chats</div>
     <div class="tab" onclick="switchTab('analytics',this)">Analytics</div>
   </div>
 
@@ -140,6 +141,14 @@
       </div>
     </div>
 
+    <!-- Chats Tab -->
+    <div id="tab-chats" style="display:none;">
+      <div class="table-wrap">
+        <div class="table-header">Ayah Conversations (<span id="chats-count">0</span>)</div>
+        <div id="chats-list" style="max-height:70vh;overflow-y:auto;"></div>
+      </div>
+    </div>
+
     <!-- Analytics Tab -->
     <div id="tab-analytics" style="display:none;">
       <div class="table-wrap" style="padding:20px;margin-bottom:16px;">
@@ -179,7 +188,7 @@ function doLogin() {
 function switchTab(name, el) {
   document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
   el.classList.add('active');
-  ['overview','leads','contacts','analytics'].forEach(function(t){
+  ['overview','leads','contacts','chats','analytics'].forEach(function(t){
     document.getElementById('tab-'+t).style.display = t===name ? 'block' : 'none';
   });
 }
@@ -278,6 +287,39 @@ function renderAll() {
     csHtml += '<div class="source-row"><span class="source-name">'+esc(e[0])+'</span><span class="source-count" style="color:#d4a017;font-weight:700;">'+e[1]+'</span></div>';
   });
   document.getElementById('call-sources').innerHTML = csHtml || '<div class="empty">No call data yet</div>';
+
+  // Chats - group by session
+  var chats = DATA.chats || [];
+  var sessions = {};
+  chats.forEach(function(c) {
+    var sid = c.session_id || 'unknown';
+    if (!sessions[sid]) sessions[sid] = [];
+    sessions[sid].push(c);
+  });
+  // Sort sessions by newest first, sort messages within each session by time
+  var sessionKeys = Object.keys(sessions).sort(function(a,b) {
+    var aTime = sessions[a][0] ? sessions[a][0].created_at : '';
+    var bTime = sessions[b][0] ? sessions[b][0].created_at : '';
+    return bTime.localeCompare(aTime);
+  });
+
+  document.getElementById('chats-count').textContent = sessionKeys.length;
+  var chatHtml = '';
+  sessionKeys.forEach(function(sid) {
+    var msgs = sessions[sid].sort(function(a,b) { return (a.created_at||'').localeCompare(b.created_at||''); });
+    var time = msgs[0] ? formatDate(msgs[0].created_at) : '';
+    chatHtml += '<div style="border-bottom:1px solid #222;padding:16px 20px;">';
+    chatHtml += '<div style="font-size:12px;color:#888;margin-bottom:8px;">Session: ' + esc(sid.slice(0,20)) + '... · ' + time + '</div>';
+    msgs.forEach(function(m) {
+      var isUser = m.role === 'user';
+      chatHtml += '<div style="display:flex;justify-content:' + (isUser?'flex-end':'flex-start') + ';margin-bottom:6px;">';
+      chatHtml += '<div style="max-width:80%;padding:8px 14px;border-radius:16px;font-size:14px;' + (isUser ? 'background:#d4a017;color:#111;border-bottom-right-radius:4px;' : 'background:#222;color:#fff;border-bottom-left-radius:4px;') + '">';
+      chatHtml += esc(m.content);
+      chatHtml += '</div></div>';
+    });
+    chatHtml += '</div>';
+  });
+  document.getElementById('chats-list').innerHTML = chatHtml || '<div class="empty">No chat conversations yet</div>';
 }
 
 function esc(s) { if(!s) return ''; var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
