@@ -43,6 +43,24 @@ Phone: (347) 437-0185
 
 First message: "Hey! Ayah here from Towing Service Queens 👋 You need a tow or roadside help?"`;
 
+async function saveLead(lead) {
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
+  if (!supabaseUrl || !supabaseKey) return;
+  try {
+    await fetch(`${supabaseUrl}/rest/v1/leads`, {
+      method: 'POST',
+      headers: {
+        'apikey': supabaseKey,
+        'Authorization': `Bearer ${supabaseKey}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal',
+      },
+      body: JSON.stringify(lead),
+    });
+  } catch(e) { console.error('Save lead error:', e); }
+}
+
 async function notifyTelegram(text) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
@@ -121,6 +139,13 @@ export default async function handler(req, res) {
       await notifyTelegram(
         `🚛 JOB BOOKED\nName: ${name.trim()}\nPhone: ${phone.trim()}\nPickup: ${pickup.trim()}\nDropoff: ${dropoff.trim()}\nVehicle: ${vehicle.trim()}\nService: ${service.trim()}\nPrice: ${price.trim()}\nDriver: ${driver.trim()}\nTime: ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })}`
       );
+      await saveLead({
+        name: name.trim(),
+        phone: phone.trim(),
+        message: `Pickup: ${pickup.trim()} | Dropoff: ${dropoff.trim()} | Vehicle: ${vehicle.trim()} | Service: ${service.trim()} | Price: ${price.trim()} | Driver: ${driver.trim()}`,
+        source: 'ayah-dispatch',
+        page: '/',
+      });
     }
 
     // Check for callback request (sent to driver/boss for pricing)
@@ -132,6 +157,13 @@ export default async function handler(req, res) {
       await notifyTelegram(
         `📞 CALLBACK NEEDED\nCustomer wants a call about pricing!\nName: ${name.trim()}\nPhone: ${phone.trim()}\nPickup: ${pickup.trim()}\nDropoff: ${dropoff.trim()}\nVehicle: ${vehicle.trim()}\nNote: ${note.trim()}\nTime: ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })}\n\nCALL THEM NOW!`
       );
+      await saveLead({
+        name: name.trim(),
+        phone: phone.trim(),
+        message: `CALLBACK - Pickup: ${pickup.trim()} | Dropoff: ${dropoff.trim()} | Vehicle: ${vehicle.trim()} | Note: ${note.trim()}`,
+        source: 'ayah-callback',
+        page: '/',
+      });
     }
 
     // Check for cancellation
