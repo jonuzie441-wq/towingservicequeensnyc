@@ -155,12 +155,22 @@
 </div>
 
 <script>
-var API_KEY = '';
+var API_KEY = sessionStorage.getItem('admin_key') || '';
 var DATA = { leads:[], analytics:[], contacts:[] };
 
+// Auto-login if key saved
+if (API_KEY) {
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadData();
+  });
+}
+
 function doLogin() {
-  API_KEY = document.getElementById('pw').value;
+  API_KEY = document.getElementById('pw').value.trim();
   if (!API_KEY) return;
+  sessionStorage.setItem('admin_key', API_KEY);
   document.getElementById('login').style.display = 'none';
   document.getElementById('dashboard').style.display = 'block';
   loadData();
@@ -177,10 +187,17 @@ function switchTab(name, el) {
 async function loadData() {
   try {
     var r = await fetch('/api/admin', { headers:{ 'x-api-key': API_KEY } });
-    if (!r.ok) { alert('Invalid password or API error'); return; }
+    if (r.status === 401) {
+      sessionStorage.removeItem('admin_key');
+      document.getElementById('login').style.display = 'flex';
+      document.getElementById('dashboard').style.display = 'none';
+      return;
+    }
     DATA = await r.json();
     renderAll();
-  } catch(e) { alert('Failed to load data'); }
+  } catch(e) {
+    console.error('Load failed:', e);
+  }
 }
 
 function renderAll() {
