@@ -18,6 +18,13 @@ urls.push({ loc: `${SITE_URL}/about.html`, priority: 0.8, changefreq: 'monthly' 
 urls.push({ loc: `${SITE_URL}/contact.html`, priority: 0.8, changefreq: 'monthly' });
 urls.push({ loc: `${SITE_URL}/services/`, priority: 0.9, changefreq: 'weekly' });
 urls.push({ loc: `${SITE_URL}/neighborhoods/`, priority: 0.9, changefreq: 'weekly' });
+urls.push({ loc: `${SITE_URL}/blog/`, priority: 0.9, changefreq: 'weekly' });
+
+// Blog posts
+const blogPosts = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/blog-posts.json'), 'utf-8'));
+for (const p of blogPosts) {
+  urls.push({ loc: `${SITE_URL}/blog/${p.slug}/`, priority: 0.7, changefreq: 'monthly' });
+}
 
 // Service pages
 for (const s of services) {
