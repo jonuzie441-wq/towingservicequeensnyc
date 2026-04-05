@@ -640,17 +640,50 @@ p { color: var(--gray-600); font-size: 1.05rem; line-height: 1.7; }
 .neighborhood-card {
   background: var(--white) !important;
   border: 2px solid var(--gray-200) !important;
+  border-left: 3px solid transparent !important;
   border-radius: 12px !important;
   padding: 18px 22px !important;
   transition: all 0.3s ease;
   color: var(--navy) !important;
   font-weight: 700;
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
 }
 
 .neighborhood-card:hover {
   border-color: var(--mint) !important;
+  border-left-color: var(--mint-dark) !important;
   background: var(--mint-light) !important;
   transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.neighborhood-card .pin {
+  color: var(--mint-dark) !important;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.neighborhood-card .name {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 800 !important;
+  color: var(--navy) !important;
+  text-transform: none !important;
+  font-size: 1rem !important;
+  letter-spacing: -0.01em !important;
+  display: block !important;
+}
+
+.neighborhood-card .nickname {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.8rem !important;
+  color: var(--gray-500) !important;
+  display: block !important;
+  text-transform: none;
+  font-weight: 500;
+  font-style: normal !important;
+  margin-top: 2px;
 }
 
 /* ============ FAQ ============ */
