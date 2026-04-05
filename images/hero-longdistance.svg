@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1628"/>
+      <stop offset="1" stop-color="#15243d"/>
+    </linearGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0H0v60" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="800" fill="url(#bg)"/>
+  <rect width="1920" height="800" fill="url(#grid)"/>
+  <g stroke="#7dd3c0" stroke-width="5" fill="none" opacity="0.5">
+    <path d="M1200 600 Q1380 500 1500 520 T1700 420 Q1780 380 1860 340"/>
+    <circle cx="1200" cy="600" r="18" fill="#7dd3c0" fill-opacity="0.3"/>
+    <circle cx="1860" cy="340" r="18" fill="#7dd3c0" fill-opacity="0.3"/>
+  </g>
+  <g stroke="#7dd3c0" stroke-width="3" opacity="0.3" stroke-dasharray="8 12">
+    <path d="M0 500 L1920 500"/>
+    <path d="M0 540 L1920 540"/>
+  </g>
+  <g stroke="#7dd3c0" stroke-width="4" fill="none" opacity="0.4">
+    <circle cx="400" cy="380" r="70"/>
+    <path d="M400 310 L400 290 M400 470 L400 450 M330 380 L310 380 M490 380 L470 380"/>
+    <path d="M400 340 L420 380 L380 380 Z" fill="#7dd3c0"/>
+  </g>
+  <text x="80" y="740" font-family="Arial,sans-serif" font-size="36" font-weight="900" fill="#ffffff" fill-opacity="0.06">LONG DISTANCE · INTERSTATE TRANSPORT</text>
+</svg>

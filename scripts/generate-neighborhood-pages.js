@@ -17,11 +17,36 @@ const BUSINESS_NAME = 'Towing Service Queens NYC';
 
 function escapeHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
+// Pool of all 13 hero SVGs — neighborhood pages rotate through them deterministically
+const HERO_POOL = [
+  '/images/hero-emergency.svg',
+  '/images/hero-flatbed.svg',
+  '/images/hero-heavy.svg',
+  '/images/hero-motorcycle.svg',
+  '/images/hero-lockout.svg',
+  '/images/hero-jumpstart.svg',
+  '/images/hero-tire.svg',
+  '/images/hero-fuel.svg',
+  '/images/hero-winching.svg',
+  '/images/hero-longdistance.svg',
+  '/images/hero-roadside.svg',
+  '/images/hero-junkcar.svg',
+  '/images/hero-wheellift.svg',
+  '/images/hero-exotic.svg'
+];
+
+function neighborhoodHero(slug) {
+  let h = 0;
+  for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) | 0;
+  return HERO_POOL[Math.abs(h) % HERO_POOL.length];
+}
+
 function buildNeighborhoodPage(n) {
   const zipFirst = n.zip.split(',')[0].trim();
   const title = `Towing Service in ${n.name}, Queens NY | 24/7 Tow Truck | ${PHONE}`;
   const metaDesc = `Fast 24/7 towing and roadside assistance in ${n.name}, Queens NY (ZIP ${zipFirst}). Emergency tow, flatbed, jump start, lockout, tire change. Call ${PHONE}.`;
   const url = `${SITE_URL}/neighborhoods/${n.slug}/`;
+  const heroImage = neighborhoodHero(n.slug);
 
   const faqs = [
     {
@@ -125,12 +150,12 @@ function buildNeighborhoodPage(n) {
 <meta property="og:description" content="${escapeHtml(metaDesc)}">
 <meta property="og:url" content="${url}">
 <meta property="og:site_name" content="${BUSINESS_NAME}">
-<meta property="og:image" content="${SITE_URL}/images/flatbed-towing-queens-nyc.jpg">
+<meta property="og:image" content="${SITE_URL}${heroImage}">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${escapeHtml(title)}">
 <meta name="twitter:description" content="${escapeHtml(metaDesc)}">
-<meta name="twitter:image" content="${SITE_URL}/images/flatbed-towing-queens-nyc.jpg">
+<meta name="twitter:image" content="${SITE_URL}${heroImage}">
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -183,7 +208,7 @@ function buildNeighborhoodPage(n) {
 
 <section class="hero">
   <div class="hero-bg">
-    <img src="/images/flatbed-towing-queens-nyc.jpg" alt="Towing service in ${n.name} Queens NY - ${BUSINESS_NAME}" style="width:100%;height:100%;object-fit:cover;opacity:0.35;" loading="eager">
+    <img src="${heroImage}" alt="Towing service in ${n.name} Queens NY - ${BUSINESS_NAME}" style="width:100%;height:100%;object-fit:cover;opacity:0.35;" loading="eager">
   </div>
   <div class="container">
     <div class="hero-label">${n.name} &middot; Queens NY &middot; ZIP ${zipFirst}</div>

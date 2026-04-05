@@ -17,10 +17,34 @@ const BUSINESS_NAME = 'Towing Service Queens NYC';
 
 function escapeHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
+const HERO_MAP = {
+  'emergency-towing': '/images/hero-emergency.svg',
+  'accident-recovery': '/images/hero-emergency.svg',
+  'flatbed-towing': '/images/hero-flatbed.svg',
+  'heavy-duty-towing': '/images/hero-heavy.svg',
+  'commercial-towing': '/images/hero-heavy.svg',
+  'construction-equipment-towing': '/images/hero-heavy.svg',
+  'motorcycle-towing': '/images/hero-motorcycle.svg',
+  'lockout-service': '/images/hero-lockout.svg',
+  'jump-start-service': '/images/hero-jumpstart.svg',
+  'flat-tire-change': '/images/hero-tire.svg',
+  'fuel-delivery': '/images/hero-fuel.svg',
+  'winching-recovery': '/images/hero-winching.svg',
+  'off-road-recovery': '/images/hero-winching.svg',
+  'long-distance-towing': '/images/hero-longdistance.svg',
+  'auto-transport': '/images/hero-longdistance.svg',
+  'roadside-assistance': '/images/hero-roadside.svg',
+  'junk-car-removal': '/images/hero-junkcar.svg',
+  'exotic-car-towing': '/images/hero-exotic.svg',
+  'wheel-lift-towing': '/images/hero-wheellift.svg',
+  'dolly-towing': '/images/hero-wheellift.svg'
+};
+
 function buildServicePage(service) {
   const title = `${service.name} in Queens NY | 24/7 ${service.short} | ${PHONE}`;
   const metaDesc = `Professional ${service.name.toLowerCase()} throughout Queens NY. 24/7 service, 15-30 minute response, fair pricing. Serving all 99+ neighborhoods. Call ${PHONE} now.`;
   const url = `${SITE_URL}/services/${service.slug}/`;
+  const heroImage = HERO_MAP[service.slug] || '/images/hero-roadside.svg';
 
   const faqs = [
     {
@@ -129,12 +153,12 @@ function buildServicePage(service) {
 <meta property="og:description" content="${escapeHtml(metaDesc)}">
 <meta property="og:url" content="${url}">
 <meta property="og:site_name" content="${BUSINESS_NAME}">
-<meta property="og:image" content="${SITE_URL}/images/flatbed-towing-queens-nyc.jpg">
+<meta property="og:image" content="${SITE_URL}${heroImage}">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${escapeHtml(title)}">
 <meta name="twitter:description" content="${escapeHtml(metaDesc)}">
-<meta name="twitter:image" content="${SITE_URL}/images/flatbed-towing-queens-nyc.jpg">
+<meta name="twitter:image" content="${SITE_URL}${heroImage}">
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -187,7 +211,7 @@ function buildServicePage(service) {
 
 <section class="hero">
   <div class="hero-bg">
-    <img src="/images/flatbed-towing-queens-nyc.jpg" alt="${service.name} in Queens NY - ${BUSINESS_NAME}" style="width:100%;height:100%;object-fit:cover;opacity:0.35;" loading="eager">
+    <img src="${heroImage}" alt="${service.name} in Queens NY - ${BUSINESS_NAME}" style="width:100%;height:100%;object-fit:cover;opacity:0.35;" loading="eager">
   </div>
   <div class="container">
     <div class="hero-label">${service.name} &middot; Queens NY</div>

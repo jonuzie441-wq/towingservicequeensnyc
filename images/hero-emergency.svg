@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1628"/>
+      <stop offset="1" stop-color="#15243d"/>
+    </linearGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0H0v60" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="800" fill="url(#bg)"/>
+  <rect width="1920" height="800" fill="url(#grid)"/>
+  <circle cx="1600" cy="250" r="180" fill="#dc2626" fill-opacity="0.18"/>
+  <circle cx="1600" cy="250" r="120" fill="#dc2626" fill-opacity="0.28"/>
+  <circle cx="1600" cy="250" r="60" fill="#dc2626" fill-opacity="0.45"/>
+  <g stroke="#dc2626" stroke-width="3" fill="none" opacity="0.4">
+    <path d="M1300 550 L1400 550 L1400 500 L1500 500 L1500 540 L1620 540 L1680 480 L1760 480 L1760 550 L1820 550"/>
+    <circle cx="1460" cy="560" r="20"/>
+    <circle cx="1700" cy="560" r="20"/>
+  </g>
+  <g fill="#dc2626" opacity="0.15">
+    <polygon points="0,720 1920,720 1920,800 0,800"/>
+    <polygon points="0,720 80,680 160,720 240,680 320,720 400,680 480,720" stroke="#dc2626" stroke-width="2" fill="none"/>
+  </g>
+  <text x="80" y="740" font-family="Arial,sans-serif" font-size="36" font-weight="900" fill="#ffffff" fill-opacity="0.06">EMERGENCY TOWING · 24/7</text>
+</svg>

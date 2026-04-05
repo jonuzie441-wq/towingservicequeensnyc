@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1628"/>
+      <stop offset="1" stop-color="#15243d"/>
+    </linearGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0H0v60" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="800" fill="url(#bg)"/>
+  <rect width="1920" height="800" fill="url(#grid)"/>
+  <g stroke="#fbbf24" stroke-width="5" fill="none" opacity="0.5">
+    <circle cx="1350" cy="540" r="90"/>
+    <circle cx="1350" cy="540" r="40"/>
+    <circle cx="1750" cy="540" r="90"/>
+    <circle cx="1750" cy="540" r="40"/>
+    <path d="M1350 540 L1500 400 L1650 380 L1750 540"/>
+    <path d="M1500 400 L1480 340 L1440 330"/>
+    <path d="M1650 380 L1680 330"/>
+    <path d="M1500 460 L1620 460 L1680 540"/>
+  </g>
+  <g stroke="#fbbf24" stroke-width="3" opacity="0.25">
+    <path d="M200 500 L600 500"/>
+    <path d="M240 540 L560 540"/>
+    <path d="M300 580 L520 580"/>
+  </g>
+  <text x="80" y="740" font-family="Arial,sans-serif" font-size="36" font-weight="900" fill="#ffffff" fill-opacity="0.06">MOTORCYCLE TOWING · BIKE-SAFE</text>
+</svg>
