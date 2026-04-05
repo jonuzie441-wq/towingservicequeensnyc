@@ -812,20 +812,106 @@ p { color: var(--gray-600); font-size: 1rem; line-height: 1.6; }
   text-shadow: 0 1px 6px rgba(0,0,0,0.4);
 }
 
-/* 13-photo rotation — deterministic per card position within each region grid */
-.neighborhoods-grid .neighborhood-card:nth-child(13n+1)  { background-image: url('/images/tow-scene-queens-deli.jpg'); }
-.neighborhoods-grid .neighborhood-card:nth-child(13n+2)  { background-image: url('/images/bmw-coupe-tow.jpg'); }
-.neighborhoods-grid .neighborhood-card:nth-child(13n+3)  { background-image: url('/images/chevy-flatbed-intersection.jpg'); }
-.neighborhoods-grid .neighborhood-card:nth-child(13n+4)  { background-image: url('/images/range-rover-tow.jpg'); }
-.neighborhoods-grid .neighborhood-card:nth-child(13n+5)  { background-image: url('/images/jeep-flatbed-auto-shop.jpg'); }
-.neighborhoods-grid .neighborhood-card:nth-child(13n+6)  { background-image: url('/images/minivan-queens-street.jpg'); }
-.neighborhoods-grid .neighborhood-card:nth-child(13n+7)  { background-image: url('/images/orange-sports-car-tow.jpg'); }
-.neighborhoods-grid .neighborhood-card:nth-child(13n+8)  { background-image: url('/images/jeep-compass-flatbed.jpg'); }
-.neighborhoods-grid .neighborhood-card:nth-child(13n+9)  { background-image: url('/images/gwagon-flatbed.jpg'); }
-.neighborhoods-grid .neighborhood-card:nth-child(13n+10) { background-image: url('/images/exotic-supercar-flatbed.jpg'); }
-.neighborhoods-grid .neighborhood-card:nth-child(13n+11) { background-image: url('/images/tow-truck-queens-street.jpg'); }
-.neighborhoods-grid .neighborhood-card:nth-child(13n+12) { background-image: url('/images/wheel-lift-dollies.jpg'); }
-.neighborhoods-grid .neighborhood-card:nth-child(13n)    { background-image: url('/images/gbp-storefront.jpg'); }
+/* Per-neighborhood Street View backgrounds — 99 unique photos */
+.neighborhood-card[href*="astoria/"] { background-image: url('/images/neighborhoods/astoria.jpg'); }
+.neighborhood-card[href*="long-island-city/"] { background-image: url('/images/neighborhoods/long-island-city.jpg'); }
+.neighborhood-card[href*="flushing/"] { background-image: url('/images/neighborhoods/flushing.jpg'); }
+.neighborhood-card[href*="jamaica/"] { background-image: url('/images/neighborhoods/jamaica.jpg'); }
+.neighborhood-card[href*="jackson-heights/"] { background-image: url('/images/neighborhoods/jackson-heights.jpg'); }
+.neighborhood-card[href*="forest-hills/"] { background-image: url('/images/neighborhoods/forest-hills.jpg'); }
+.neighborhood-card[href*="bayside/"] { background-image: url('/images/neighborhoods/bayside.jpg'); }
+.neighborhood-card[href*="corona/"] { background-image: url('/images/neighborhoods/corona.jpg'); }
+.neighborhood-card[href*="elmhurst/"] { background-image: url('/images/neighborhoods/elmhurst.jpg'); }
+.neighborhood-card[href*="ridgewood/"] { background-image: url('/images/neighborhoods/ridgewood.jpg'); }
+.neighborhood-card[href*="howard-beach/"] { background-image: url('/images/neighborhoods/howard-beach.jpg'); }
+.neighborhood-card[href*="far-rockaway/"] { background-image: url('/images/neighborhoods/far-rockaway.jpg'); }
+.neighborhood-card[href*="ozone-park/"] { background-image: url('/images/neighborhoods/ozone-park.jpg'); }
+.neighborhood-card[href*="richmond-hill/"] { background-image: url('/images/neighborhoods/richmond-hill.jpg'); }
+.neighborhood-card[href*="woodside/"] { background-image: url('/images/neighborhoods/woodside.jpg'); }
+.neighborhood-card[href*="sunnyside/"] { background-image: url('/images/neighborhoods/sunnyside.jpg'); }
+.neighborhood-card[href*="maspeth/"] { background-image: url('/images/neighborhoods/maspeth.jpg'); }
+.neighborhood-card[href*="middle-village/"] { background-image: url('/images/neighborhoods/middle-village.jpg'); }
+.neighborhood-card[href*="glendale/"] { background-image: url('/images/neighborhoods/glendale.jpg'); }
+.neighborhood-card[href*="woodhaven/"] { background-image: url('/images/neighborhoods/woodhaven.jpg'); }
+.neighborhood-card[href*="queens-village/"] { background-image: url('/images/neighborhoods/queens-village.jpg'); }
+.neighborhood-card[href*="cambria-heights/"] { background-image: url('/images/neighborhoods/cambria-heights.jpg'); }
+.neighborhood-card[href*="st-albans/"] { background-image: url('/images/neighborhoods/st-albans.jpg'); }
+.neighborhood-card[href*="hollis/"] { background-image: url('/images/neighborhoods/hollis.jpg'); }
+.neighborhood-card[href*="laurelton/"] { background-image: url('/images/neighborhoods/laurelton.jpg'); }
+.neighborhood-card[href*="springfield-gardens/"] { background-image: url('/images/neighborhoods/springfield-gardens.jpg'); }
+.neighborhood-card[href*="rosedale/"] { background-image: url('/images/neighborhoods/rosedale.jpg'); }
+.neighborhood-card[href*="bellerose/"] { background-image: url('/images/neighborhoods/bellerose.jpg'); }
+.neighborhood-card[href*="glen-oaks/"] { background-image: url('/images/neighborhoods/glen-oaks.jpg'); }
+.neighborhood-card[href*="floral-park/"] { background-image: url('/images/neighborhoods/floral-park.jpg'); }
+.neighborhood-card[href*="little-neck/"] { background-image: url('/images/neighborhoods/little-neck.jpg'); }
+.neighborhood-card[href*="douglaston/"] { background-image: url('/images/neighborhoods/douglaston.jpg'); }
+.neighborhood-card[href*="whitestone/"] { background-image: url('/images/neighborhoods/whitestone.jpg'); }
+.neighborhood-card[href*="college-point/"] { background-image: url('/images/neighborhoods/college-point.jpg'); }
+.neighborhood-card[href*="bay-terrace/"] { background-image: url('/images/neighborhoods/bay-terrace.jpg'); }
+.neighborhood-card[href*="beechhurst/"] { background-image: url('/images/neighborhoods/beechhurst.jpg'); }
+.neighborhood-card[href*="malba/"] { background-image: url('/images/neighborhoods/malba.jpg'); }
+.neighborhood-card[href*="fresh-meadows/"] { background-image: url('/images/neighborhoods/fresh-meadows.jpg'); }
+.neighborhood-card[href*="kew-gardens/"] { background-image: url('/images/neighborhoods/kew-gardens.jpg'); }
+.neighborhood-card[href*="briarwood/"] { background-image: url('/images/neighborhoods/briarwood.jpg'); }
+.neighborhood-card[href*="rego-park/"] { background-image: url('/images/neighborhoods/rego-park.jpg'); }
+.neighborhood-card[href*="kew-gardens-hills/"] { background-image: url('/images/neighborhoods/kew-gardens-hills.jpg'); }
+.neighborhood-card[href*="hillcrest/"] { background-image: url('/images/neighborhoods/hillcrest.jpg'); }
+.neighborhood-card[href*="jamaica-estates/"] { background-image: url('/images/neighborhoods/jamaica-estates.jpg'); }
+.neighborhood-card[href*="jamaica-hills/"] { background-image: url('/images/neighborhoods/jamaica-hills.jpg'); }
+.neighborhood-card[href*="south-jamaica/"] { background-image: url('/images/neighborhoods/south-jamaica.jpg'); }
+.neighborhood-card[href*="south-ozone-park/"] { background-image: url('/images/neighborhoods/south-ozone-park.jpg'); }
+.neighborhood-card[href*="baisley-park/"] { background-image: url('/images/neighborhoods/baisley-park.jpg'); }
+.neighborhood-card[href*="rochdale/"] { background-image: url('/images/neighborhoods/rochdale.jpg'); }
+.neighborhood-card[href*="hollis-hills/"] { background-image: url('/images/neighborhoods/hollis-hills.jpg'); }
+.neighborhood-card[href*="cunningham-heights/"] { background-image: url('/images/neighborhoods/cunningham-heights.jpg'); }
+.neighborhood-card[href*="addisleigh-park/"] { background-image: url('/images/neighborhoods/addisleigh-park.jpg'); }
+.neighborhood-card[href*="queens-village-north/"] { background-image: url('/images/neighborhoods/queens-village-north.jpg'); }
+.neighborhood-card[href*="bellaire/"] { background-image: url('/images/neighborhoods/bellaire.jpg'); }
+.neighborhood-card[href*="holliswood/"] { background-image: url('/images/neighborhoods/holliswood.jpg'); }
+.neighborhood-card[href*="oakland-gardens/"] { background-image: url('/images/neighborhoods/oakland-gardens.jpg'); }
+.neighborhood-card[href*="auburndale/"] { background-image: url('/images/neighborhoods/auburndale.jpg'); }
+.neighborhood-card[href*="pomonok/"] { background-image: url('/images/neighborhoods/pomonok.jpg'); }
+.neighborhood-card[href*="utopia/"] { background-image: url('/images/neighborhoods/utopia.jpg'); }
+.neighborhood-card[href*="murray-hill/"] { background-image: url('/images/neighborhoods/murray-hill.jpg'); }
+.neighborhood-card[href*="north-corona/"] { background-image: url('/images/neighborhoods/north-corona.jpg'); }
+.neighborhood-card[href*="east-elmhurst/"] { background-image: url('/images/neighborhoods/east-elmhurst.jpg'); }
+.neighborhood-card[href*="ditmars-steinway/"] { background-image: url('/images/neighborhoods/ditmars-steinway.jpg'); }
+.neighborhood-card[href*="hunters-point/"] { background-image: url('/images/neighborhoods/hunters-point.jpg'); }
+.neighborhood-card[href*="court-square/"] { background-image: url('/images/neighborhoods/court-square.jpg'); }
+.neighborhood-card[href*="queensbridge/"] { background-image: url('/images/neighborhoods/queensbridge.jpg'); }
+.neighborhood-card[href*="ravenswood/"] { background-image: url('/images/neighborhoods/ravenswood.jpg'); }
+.neighborhood-card[href*="dutch-kills/"] { background-image: url('/images/neighborhoods/dutch-kills.jpg'); }
+.neighborhood-card[href*="blissville/"] { background-image: url('/images/neighborhoods/blissville.jpg'); }
+.neighborhood-card[href*="hallets-point/"] { background-image: url('/images/neighborhoods/hallets-point.jpg'); }
+.neighborhood-card[href*="bowery-bay/"] { background-image: url('/images/neighborhoods/bowery-bay.jpg'); }
+.neighborhood-card[href*="steinway/"] { background-image: url('/images/neighborhoods/steinway.jpg'); }
+.neighborhood-card[href*="old-astoria/"] { background-image: url('/images/neighborhoods/old-astoria.jpg'); }
+.neighborhood-card[href*="linden-hill/"] { background-image: url('/images/neighborhoods/linden-hill.jpg'); }
+.neighborhood-card[href*="lefrak-city/"] { background-image: url('/images/neighborhoods/lefrak-city.jpg'); }
+.neighborhood-card[href*="lindenwood/"] { background-image: url('/images/neighborhoods/lindenwood.jpg'); }
+.neighborhood-card[href*="old-howard-beach/"] { background-image: url('/images/neighborhoods/old-howard-beach.jpg'); }
+.neighborhood-card[href*="hamilton-beach/"] { background-image: url('/images/neighborhoods/hamilton-beach.jpg'); }
+.neighborhood-card[href*="broad-channel/"] { background-image: url('/images/neighborhoods/broad-channel.jpg'); }
+.neighborhood-card[href*="rockaway-beach/"] { background-image: url('/images/neighborhoods/rockaway-beach.jpg'); }
+.neighborhood-card[href*="rockaway-park/"] { background-image: url('/images/neighborhoods/rockaway-park.jpg'); }
+.neighborhood-card[href*="belle-harbor/"] { background-image: url('/images/neighborhoods/belle-harbor.jpg'); }
+.neighborhood-card[href*="neponsit/"] { background-image: url('/images/neighborhoods/neponsit.jpg'); }
+.neighborhood-card[href*="breezy-point/"] { background-image: url('/images/neighborhoods/breezy-point.jpg'); }
+.neighborhood-card[href*="arverne/"] { background-image: url('/images/neighborhoods/arverne.jpg'); }
+.neighborhood-card[href*="edgemere/"] { background-image: url('/images/neighborhoods/edgemere.jpg'); }
+.neighborhood-card[href*="bayswater/"] { background-image: url('/images/neighborhoods/bayswater.jpg'); }
+.neighborhood-card[href*="wakefield/"] { background-image: url('/images/neighborhoods/wakefield.jpg'); }
+.neighborhood-card[href*="brookville/"] { background-image: url('/images/neighborhoods/brookville.jpg'); }
+.neighborhood-card[href*="seaside/"] { background-image: url('/images/neighborhoods/seaside.jpg'); }
+.neighborhood-card[href*="north-shore-towers/"] { background-image: url('/images/neighborhoods/north-shore-towers.jpg'); }
+.neighborhood-card[href*="clearview/"] { background-image: url('/images/neighborhoods/clearview.jpg'); }
+.neighborhood-card[href*="bayside-hills/"] { background-image: url('/images/neighborhoods/bayside-hills.jpg'); }
+.neighborhood-card[href*="meadowmere/"] { background-image: url('/images/neighborhoods/meadowmere.jpg'); }
+.neighborhood-card[href*="hammels/"] { background-image: url('/images/neighborhoods/hammels.jpg'); }
+.neighborhood-card[href*="roxbury/"] { background-image: url('/images/neighborhoods/roxbury.jpg'); }
+.neighborhood-card[href*="electchester/"] { background-image: url('/images/neighborhoods/electchester.jpg'); }
+.neighborhood-card[href*="queensboro-hill/"] { background-image: url('/images/neighborhoods/queensboro-hill.jpg'); }
+.neighborhood-card[href*="willets-point/"] { background-image: url('/images/neighborhoods/willets-point.jpg'); }
 
 /* ============ FAQ ============ */
 .faq-item {
