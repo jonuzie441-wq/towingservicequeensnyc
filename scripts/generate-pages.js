@@ -11,6 +11,7 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const services = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/services.json'), 'utf-8'));
 const neighborhoods = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/neighborhoods.json'), 'utf-8'));
+const { SAME_AS, AGGREGATE_RATING, REVIEWS, GBP_URL } = require('./business-data.js');
 
 const SITE_URL = 'https://towingservicequeensnyc.com';
 const PHONE = '(347) 437-0185';
@@ -353,7 +354,11 @@ function buildComboPage(service, neighborhood) {
             "addressRegion": "NY",
             "postalCode": "11422",
             "addressCountry": "US"
-          }
+          },
+          "sameAs": SAME_AS,
+          "aggregateRating": AGGREGATE_RATING,
+          "review": REVIEWS,
+          "hasMap": GBP_URL
         },
         "areaServed": {
           "@type": "Place",

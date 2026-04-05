@@ -9,6 +9,7 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const services = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/services.json'), 'utf-8'));
 const neighborhoods = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/neighborhoods.json'), 'utf-8'));
+const { SAME_AS, AGGREGATE_RATING, REVIEWS, GBP_URL } = require('./business-data.js');
 
 const SITE_URL = 'https://towingservicequeensnyc.com';
 const PHONE = '(347) 437-0185';
@@ -102,7 +103,11 @@ function buildServicePage(service) {
           "@id": `${SITE_URL}/#business`,
           "name": BUSINESS_NAME,
           "telephone": "+1-347-437-0185",
-          "url": SITE_URL
+          "url": SITE_URL,
+          "sameAs": SAME_AS,
+          "aggregateRating": AGGREGATE_RATING,
+          "review": REVIEWS,
+          "hasMap": GBP_URL
         },
         "areaServed": {
           "@type": "City",

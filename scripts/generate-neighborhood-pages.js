@@ -9,6 +9,7 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const services = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/services.json'), 'utf-8'));
 const neighborhoods = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/neighborhoods.json'), 'utf-8'));
+const { SAME_AS, AGGREGATE_RATING, REVIEWS, GBP_URL } = require('./business-data.js');
 
 const SITE_URL = 'https://towingservicequeensnyc.com';
 const PHONE = '(347) 437-0185';
@@ -111,7 +112,11 @@ function buildNeighborhoodPage(n) {
           "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
           "opens": "00:00",
           "closes": "23:59"
-        }
+        },
+        "sameAs": SAME_AS,
+        "aggregateRating": AGGREGATE_RATING,
+        "review": REVIEWS,
+        "hasMap": GBP_URL
       },
       {
         "@type": "BreadcrumbList",
