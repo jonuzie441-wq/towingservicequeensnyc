@@ -185,6 +185,116 @@ p { color: var(--gray-600); font-size: 1rem; line-height: 1.6; }
   overflow: hidden;
 }
 
+/* Hero 2-col layout: text left, GBP card right */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* GBP Trust Card */
+.gbp-card {
+  background: #fff;
+  color: var(--navy);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35), 0 4px 16px rgba(0,0,0,0.2);
+  max-width: 420px;
+  margin-left: auto;
+  width: 100%;
+}
+@media (max-width: 900px) { .gbp-card { margin: 0 auto; } }
+
+.gbp-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eef0f3;
+}
+
+.gbp-rating {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+}
+.gbp-rating-num {
+  font-family: 'Inter', sans-serif;
+  font-size: 3.25rem;
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.gbp-stars {
+  color: #fbbc04;
+  font-size: 1.15rem;
+  letter-spacing: 2px;
+}
+.gbp-reviews-label {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.gbp-map-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  border: 1px solid #eef0f3;
+}
+
+.gbp-address {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--gray-600);
+  padding: 8px 0 14px;
+}
+.gbp-address strong { color: var(--navy); font-weight: 800; }
+
+.gbp-actions {
+  display: flex;
+  gap: 8px;
+}
+.gbp-btn {
+  flex: 1;
+  display: block;
+  text-align: center;
+  padding: 11px 14px;
+  border-radius: 100px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.gbp-btn:hover { transform: translateY(-1px); }
+.gbp-btn-primary {
+  background: var(--mint);
+  color: var(--navy) !important;
+}
+.gbp-btn-primary:hover { box-shadow: 0 6px 16px rgba(125,211,192,0.4); }
+.gbp-btn-secondary {
+  background: #f1f4f8;
+  color: var(--navy) !important;
+  border: 1px solid #e0e4eb;
+}
+.gbp-btn-secondary:hover { background: #e8ecf1; }
+
 .hero .container {
   padding-top: 20px !important;
   padding-bottom: 20px !important;
