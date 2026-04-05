@@ -52,11 +52,11 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: none !important;
 }
 
-h1 { font-size: clamp(2.5rem, 7vw, 5.5rem) !important; letter-spacing: -0.04em !important; }
-h2 { font-size: clamp(2rem, 5vw, 3.75rem) !important; letter-spacing: -0.035em !important; }
-h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem) !important; font-weight: 800 !important; }
+h1 { font-size: clamp(2rem, 4.8vw, 3.75rem) !important; letter-spacing: -0.035em !important; }
+h2 { font-size: clamp(1.75rem, 3.4vw, 2.5rem) !important; letter-spacing: -0.03em !important; }
+h3 { font-size: clamp(1.15rem, 2vw, 1.5rem) !important; font-weight: 800 !important; }
 
-p { color: var(--gray-600); font-size: 1.05rem; line-height: 1.7; }
+p { color: var(--gray-600); font-size: 1rem; line-height: 1.6; }
 
 /* ============ TOP BAR (Navy) ============ */
 .top-bar {
@@ -180,7 +180,7 @@ p { color: var(--gray-600); font-size: 1.05rem; line-height: 1.7; }
   background: var(--navy) !important;
   color: var(--white) !important;
   min-height: auto !important;
-  padding: 40px 0 80px !important;
+  padding: 32px 0 48px !important;
   position: relative;
   overflow: hidden;
 }
@@ -417,7 +417,7 @@ p { color: var(--gray-600); font-size: 1.05rem; line-height: 1.7; }
 
 /* ============ SECTIONS — ALTERNATING MINT/WHITE ============ */
 .section {
-  padding: 100px 0 !important;
+  padding: 56px 0 !important;
   background: var(--white);
 }
 
@@ -436,18 +436,18 @@ p { color: var(--gray-600); font-size: 1.05rem; line-height: 1.7; }
 
 .section-header {
   text-align: center;
-  margin-bottom: 72px !important;
+  margin-bottom: 36px !important;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .section-header h2 {
-  font-size: clamp(2.25rem, 5vw, 3.75rem) !important;
+  font-size: clamp(1.85rem, 3.6vw, 2.6rem) !important;
   font-weight: 900 !important;
-  letter-spacing: -0.04em !important;
-  margin-bottom: 20px !important;
-  line-height: 1.05 !important;
+  letter-spacing: -0.03em !important;
+  margin-bottom: 12px !important;
+  line-height: 1.1 !important;
   color: var(--navy) !important;
 }
 
@@ -462,8 +462,8 @@ p { color: var(--gray-600); font-size: 1.05rem; line-height: 1.7; }
 }
 
 .section-header p {
-  font-size: 1.2rem !important;
-  line-height: 1.65 !important;
+  font-size: 1.05rem !important;
+  line-height: 1.6 !important;
   color: var(--gray-600) !important;
   font-weight: 400 !important;
 }
@@ -721,7 +721,7 @@ p { color: var(--gray-600); font-size: 1.05rem; line-height: 1.7; }
   background: var(--navy) !important;
   position: relative;
   overflow: hidden;
-  padding: 120px 0 !important;
+  padding: 64px 0 !important;
   color: var(--white);
 }
 
@@ -741,35 +741,35 @@ p { color: var(--gray-600); font-size: 1.05rem; line-height: 1.7; }
 }
 
 .cta-banner h2 {
-  font-size: clamp(2.5rem, 5.5vw, 4.5rem) !important;
+  font-size: clamp(1.85rem, 3.8vw, 2.75rem) !important;
   font-weight: 900 !important;
   color: var(--white) !important;
   font-style: normal !important;
-  letter-spacing: -0.04em !important;
-  margin-bottom: 24px !important;
-  line-height: 1.05 !important;
+  letter-spacing: -0.03em !important;
+  margin-bottom: 16px !important;
+  line-height: 1.1 !important;
 }
 
 .cta-banner .phone-number {
   font-family: 'Inter', sans-serif !important;
-  font-size: clamp(2.5rem, 5.5vw, 5rem) !important;
+  font-size: clamp(2rem, 4.4vw, 3.5rem) !important;
   font-weight: 900 !important;
   color: var(--mint) !important;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.03em;
   display: block;
-  margin: 28px 0;
+  margin: 16px 0;
 }
 
 .cta-banner p {
   color: rgba(255,255,255,0.75) !important;
-  font-size: 1.2rem !important;
-  margin-bottom: 32px !important;
+  font-size: 1.05rem !important;
+  margin-bottom: 20px !important;
 }
 
 /* ============ FOOTER ============ */
 .footer {
   background: var(--navy-dark) !important;
-  padding: 100px 0 40px !important;
+  padding: 56px 0 28px !important;
   color: var(--gray-300);
 }
 

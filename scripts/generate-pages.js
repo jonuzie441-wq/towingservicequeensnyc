@@ -454,6 +454,7 @@ function buildComboPage(service, neighborhood) {
         <li><a href="/">Home</a></li>
         <li class="nav-dropdown"><a href="/services/">Services</a></li>
         <li class="nav-dropdown"><a href="/neighborhoods/">Service Areas</a></li>
+        <li><a href="/blog/">Blog</a></li>
         <li><a href="/about.html">About</a></li>
         <li><a href="/contact.html">Contact</a></li>
       </ul>
@@ -602,6 +603,7 @@ function buildComboPage(service, neighborhood) {
           <li><a href="/">Home</a></li>
           <li><a href="/services/">All Services</a></li>
           <li><a href="/neighborhoods/">All Areas</a></li>
+          <li><a href="/blog/">Blog</a></li>
           <li><a href="/about.html">About</a></li>
           <li><a href="/contact.html">Contact</a></li>
         </ul>
