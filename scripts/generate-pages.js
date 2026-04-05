@@ -327,8 +327,8 @@ function buildComboPage(service, neighborhood) {
     'roadside-assistance': '/images/hero-roadside.svg',
     'junk-car-removal': '/images/hero-junkcar.svg',
     'exotic-car-towing': '/images/hero-exotic.svg',
-    'wheel-lift-towing': '/images/hero-wheellift.svg',
-    'dolly-towing': '/images/hero-wheellift.svg'
+    'wheel-lift-towing': '/images/wheel-lift-dollies.jpg',
+    'dolly-towing': '/images/wheel-lift-dollies.jpg'
   };
   const heroImage = HERO_MAP[service.slug] || '/images/hero-roadside.svg';
 

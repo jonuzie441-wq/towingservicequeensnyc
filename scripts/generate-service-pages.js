@@ -37,8 +37,8 @@ const HERO_MAP = {
   'roadside-assistance': '/images/hero-roadside.svg',
   'junk-car-removal': '/images/hero-junkcar.svg',
   'exotic-car-towing': '/images/hero-exotic.svg',
-  'wheel-lift-towing': '/images/hero-wheellift.svg',
-  'dolly-towing': '/images/hero-wheellift.svg'
+  'wheel-lift-towing': '/images/wheel-lift-dollies.jpg',
+  'dolly-towing': '/images/wheel-lift-dollies.jpg'
 };
 
 function buildServicePage(service) {
