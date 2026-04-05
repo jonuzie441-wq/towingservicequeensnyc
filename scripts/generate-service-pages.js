@@ -19,9 +19,9 @@ const BUSINESS_NAME = 'Towing Service Queens NYC';
 function escapeHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 const HERO_MAP = {
-  'emergency-towing': '/images/hero-emergency.svg',
-  'accident-recovery': '/images/hero-emergency.svg',
-  'flatbed-towing': '/images/hero-flatbed.svg',
+  'emergency-towing': '/images/tow-scene-queens-deli.jpg',
+  'accident-recovery': '/images/chevy-flatbed-intersection.jpg',
+  'flatbed-towing': '/images/bmw-coupe-tow.jpg',
   'heavy-duty-towing': '/images/hero-heavy.svg',
   'commercial-towing': '/images/hero-heavy.svg',
   'construction-equipment-towing': '/images/hero-heavy.svg',
@@ -32,11 +32,11 @@ const HERO_MAP = {
   'fuel-delivery': '/images/hero-fuel.svg',
   'winching-recovery': '/images/hero-winching.svg',
   'off-road-recovery': '/images/hero-winching.svg',
-  'long-distance-towing': '/images/hero-longdistance.svg',
-  'auto-transport': '/images/hero-longdistance.svg',
-  'roadside-assistance': '/images/hero-roadside.svg',
+  'long-distance-towing': '/images/jeep-compass-flatbed.jpg',
+  'auto-transport': '/images/jeep-flatbed-auto-shop.jpg',
+  'roadside-assistance': '/images/minivan-queens-street.jpg',
   'junk-car-removal': '/images/hero-junkcar.svg',
-  'exotic-car-towing': '/images/hero-exotic.svg',
+  'exotic-car-towing': '/images/exotic-supercar-flatbed.jpg',
   'wheel-lift-towing': '/images/wheel-lift-dollies.jpg',
   'dolly-towing': '/images/wheel-lift-dollies.jpg'
 };
@@ -45,7 +45,8 @@ function buildServicePage(service) {
   const title = `${service.name} in Queens NY | 24/7 ${service.short} | ${PHONE}`;
   const metaDesc = `Professional ${service.name.toLowerCase()} throughout Queens NY. 24/7 service, 15-30 minute response, fair pricing. Serving all 99+ neighborhoods. Call ${PHONE} now.`;
   const url = `${SITE_URL}/services/${service.slug}/`;
-  const heroImage = HERO_MAP[service.slug] || '/images/hero-roadside.svg';
+  const heroImage = HERO_MAP[service.slug] || '/images/tow-truck-queens-street.jpg';
+  const heroWebp = heroImage.endsWith('.svg') ? null : heroImage.replace(/\.jpg$/, '.webp');
 
   const faqs = [
     {
@@ -217,7 +218,7 @@ function buildServicePage(service) {
 
 <section class="hero">
   <div class="hero-bg">
-    <img src="${heroImage}" alt="${service.name} in Queens NY - ${BUSINESS_NAME}" style="width:100%;height:100%;object-fit:cover;opacity:0.35;" loading="eager">
+    ${heroWebp ? `<picture><source srcset="${heroWebp}" type="image/webp"><img src="${heroImage}" alt="${service.name} in Queens NY - ${BUSINESS_NAME}" style="width:100%;height:100%;object-fit:cover;opacity:0.45;" loading="eager"></picture>` : `<img src="${heroImage}" alt="${service.name} in Queens NY - ${BUSINESS_NAME}" style="width:100%;height:100%;object-fit:cover;opacity:0.35;" loading="eager">`}
   </div>
   <div class="container">
     <div class="hero-label">${service.name} &middot; Queens NY</div>

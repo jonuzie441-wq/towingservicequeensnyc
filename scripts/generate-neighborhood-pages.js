@@ -18,10 +18,21 @@ const BUSINESS_NAME = 'Towing Service Queens NYC';
 
 function escapeHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-// Pool of all 13 hero SVGs — neighborhood pages rotate through them deterministically
+// Hero pool — mix of real photos + branded SVGs. Neighborhood pages rotate
+// through this deterministically by slug, giving each neighborhood its own look.
 const HERO_POOL = [
-  '/images/hero-emergency.svg',
-  '/images/hero-flatbed.svg',
+  '/images/tow-scene-queens-deli.jpg',
+  '/images/chevy-flatbed-intersection.jpg',
+  '/images/bmw-coupe-tow.jpg',
+  '/images/minivan-queens-street.jpg',
+  '/images/range-rover-tow.jpg',
+  '/images/jeep-flatbed-auto-shop.jpg',
+  '/images/orange-sports-car-tow.jpg',
+  '/images/jeep-compass-flatbed.jpg',
+  '/images/exotic-supercar-flatbed.jpg',
+  '/images/gwagon-flatbed.jpg',
+  '/images/tow-truck-queens-street.jpg',
+  '/images/wheel-lift-dollies.jpg',
   '/images/hero-heavy.svg',
   '/images/hero-motorcycle.svg',
   '/images/hero-lockout.svg',
@@ -29,11 +40,7 @@ const HERO_POOL = [
   '/images/hero-tire.svg',
   '/images/hero-fuel.svg',
   '/images/hero-winching.svg',
-  '/images/hero-longdistance.svg',
-  '/images/hero-roadside.svg',
-  '/images/hero-junkcar.svg',
-  '/images/hero-wheellift.svg',
-  '/images/hero-exotic.svg'
+  '/images/hero-junkcar.svg'
 ];
 
 function neighborhoodHero(slug) {
@@ -48,6 +55,7 @@ function buildNeighborhoodPage(n) {
   const metaDesc = `Fast 24/7 towing and roadside assistance in ${n.name}, Queens NY (ZIP ${zipFirst}). Emergency tow, flatbed, jump start, lockout, tire change. Call ${PHONE}.`;
   const url = `${SITE_URL}/neighborhoods/${n.slug}/`;
   const heroImage = neighborhoodHero(n.slug);
+  const heroWebp = heroImage.endsWith('.svg') ? null : heroImage.replace(/\.jpg$/, '.webp');
 
   const faqs = [
     {
@@ -214,7 +222,7 @@ function buildNeighborhoodPage(n) {
 
 <section class="hero">
   <div class="hero-bg">
-    <img src="${heroImage}" alt="Towing service in ${n.name} Queens NY - ${BUSINESS_NAME}" style="width:100%;height:100%;object-fit:cover;opacity:0.35;" loading="eager">
+    ${heroWebp ? `<picture><source srcset="${heroWebp}" type="image/webp"><img src="${heroImage}" alt="Towing service in ${n.name} Queens NY - ${BUSINESS_NAME}" style="width:100%;height:100%;object-fit:cover;opacity:0.45;" loading="eager"></picture>` : `<img src="${heroImage}" alt="Towing service in ${n.name} Queens NY - ${BUSINESS_NAME}" style="width:100%;height:100%;object-fit:cover;opacity:0.35;" loading="eager">`}
   </div>
   <div class="container">
     <div class="hero-label">${n.name} &middot; Queens NY &middot; ZIP ${zipFirst}</div>
