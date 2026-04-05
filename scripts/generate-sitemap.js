@@ -53,37 +53,15 @@ for (const s of services) {
 
 console.log(`Total URLs: ${urls.length}`);
 
-// Split into files of 500 URLs each (optimal for crawl budget)
-const CHUNK_SIZE = 500;
-const chunks = [];
-for (let i = 0; i < urls.length; i += CHUNK_SIZE) {
-  chunks.push(urls.slice(i, i + CHUNK_SIZE));
-}
-
-// Write individual sitemaps
-chunks.forEach((chunk, i) => {
-  const filename = `sitemap-${i + 1}.xml`;
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+// Write single sitemap
+const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${chunk.map(u => `  <url>
+${urls.map(u => `  <url>
     <loc>${u.loc}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>${u.changefreq}</changefreq>
     <priority>${u.priority.toFixed(1)}</priority>
   </url>`).join('\n')}
 </urlset>`;
-  fs.writeFileSync(path.join(ROOT, filename), xml);
-  console.log(`Wrote ${filename} with ${chunk.length} URLs`);
-});
-
-// Write sitemap index
-const indexXml = `<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${chunks.map((_, i) => `  <sitemap>
-    <loc>${SITE_URL}/sitemap-${i + 1}.xml</loc>
-    <lastmod>${today}</lastmod>
-  </sitemap>`).join('\n')}
-</sitemapindex>`;
-fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), indexXml);
-console.log(`\nWrote sitemap.xml (index) pointing to ${chunks.length} sitemap files`);
-console.log(`\n✅ Total: ${urls.length} URLs across ${chunks.length} sitemap files`);
+fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml);
+console.log(`\n✅ Wrote sitemap.xml with ${urls.length} URLs`);
