@@ -82,6 +82,27 @@
         device: getDevice(),
         source: src.source
       });
+      // Fire GA4 event for call tracking
+      if (typeof gtag === 'function') {
+        gtag('event', 'call_click', {
+          event_category: 'engagement',
+          event_label: window.location.pathname,
+          phone_number: anchor.getAttribute('href'),
+          traffic_source: src.source,
+          device_type: getDevice()
+        });
+      }
+    }
+
+    // Track chat opens for GA4
+    if (t.closest('[onclick*="ayahOpen"]') || t.closest('.ayah-trigger')) {
+      if (typeof gtag === 'function') {
+        gtag('event', 'chat_open', {
+          event_category: 'engagement',
+          event_label: window.location.pathname,
+          traffic_source: src.source
+        });
+      }
     }
   });
 })();

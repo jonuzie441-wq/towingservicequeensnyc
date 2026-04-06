@@ -78,5 +78,125 @@
     "category": "DIY Guides",
     "readTime": 11,
     "intro": "You turn the key, and nothing happens. Or maybe you hear clicking but the engine won't crank. Or it cranks but won't start. Each of these situations has different causes and solutions. This guide walks you through diagnosing exactly why your car won't start and what to do about it."
+  },
+  {
+    "slug": "towing-laws-nyc-what-drivers-need-to-know",
+    "title": "Towing Laws in NYC: What Every Queens Driver Needs to Know",
+    "description": "NYC towing laws, your rights during a tow, legal parking rules, predatory towing protection, and how to fight an illegal tow in Queens NY.",
+    "category": "Legal Guides",
+    "readTime": 12,
+    "intro": "New York City has strict towing regulations designed to protect drivers from predatory practices. But most drivers don't know their rights until their car is already on the hook. This guide covers the towing laws that apply in Queens, your rights during and after a tow, and how to fight back if you've been towed illegally."
+  },
+  {
+    "slug": "awd-4wd-towing-why-drivetrain-matters",
+    "title": "AWD vs 4WD Towing: Why Your Drivetrain Matters",
+    "description": "Why AWD and 4WD vehicles need special towing. Flatbed vs dolly, drivetrain damage risks, and how to protect your Subaru, Audi, or Jeep during a tow.",
+    "category": "Vehicle Care",
+    "readTime": 10,
+    "intro": "If you drive an AWD or 4WD vehicle — a Subaru, Audi Quattro, BMW xDrive, Jeep 4x4, or any all-wheel-drive SUV — towing your vehicle incorrectly can cause thousands of dollars in drivetrain damage. This guide explains exactly why AWD/4WD towing is different and how to make sure your vehicle is transported safely."
+  },
+  {
+    "slug": "insurance-and-towing-what-policy-covers",
+    "title": "Insurance and Towing: What Your Policy Actually Covers in 2026",
+    "description": "Does your car insurance cover towing? What about roadside assistance? Comprehensive guide to towing coverage, claims, and getting reimbursed in Queens NY.",
+    "category": "Consumer Guides",
+    "readTime": 9,
+    "intro": "Most drivers assume their insurance covers towing. Some policies do, some don't, and the ones that do often have limits that surprise people. This guide breaks down exactly what standard auto insurance policies cover when it comes to towing and roadside assistance, how to file a claim for a tow, and what to do if your policy doesn't cover it."
+  },
+  {
+    "slug": "queens-parking-rules-avoid-getting-towed",
+    "title": "Queens Parking Rules: How to Avoid Getting Towed by the City",
+    "description": "Complete Queens NY parking guide. Street cleaning, fire hydrants, alternate side, school zones, and how to avoid getting towed or ticketed.",
+    "category": "Local Guides",
+    "readTime": 11,
+    "intro": "Getting towed by the city in Queens is expensive, frustrating, and completely avoidable if you know the rules. Between alternate side parking, fire hydrant zones, bus stops, school zones, and commercial loading areas, there are over a dozen ways to get legally towed in Queens. This guide covers every one of them so you never get that sinking feeling of finding an empty curb where your car used to be."
+  },
+  {
+    "slug": "summer-car-care-tips-queens-drivers",
+    "title": "Summer Car Care Tips for Queens Drivers: Beat the Heat",
+    "description": "Prevent summer breakdowns in Queens NY. Cooling system, battery, tires, AC maintenance. Plus what to do if you overheat on the BQE.",
+    "category": "Seasonal Guides",
+    "readTime": 10,
+    "intro": "Queens summers are brutal on vehicles. Heat-soaked asphalt radiates upward into your engine bay, AC systems run constantly, batteries cook under the hood, and tire blowouts spike as hot pavement meets worn rubber. This guide covers summer-specific maintenance that prevents breakdowns, plus exactly what to do if your car overheats in Queens traffic."
+  },
+  {
+    "slug": "what-is-wheel-lift-tow-truck",
+    "title": "What Is a Wheel Lift Tow Truck? When Do You Need One?",
+    "description": "Wheel lift vs flatbed vs hook-and-chain tow trucks explained. Which one is right for your vehicle, costs, and when each type is used in Queens.",
+    "category": "Vehicle Care",
+    "readTime": 8,
+    "intro": "Not all tow trucks work the same way. Wheel lift, flatbed, and hook-and-chain tow trucks each have strengths and limitations. Choosing the wrong type for your vehicle can cause damage. This guide explains exactly how each type works, what vehicles they're best for, and how to tell your towing company which one you need."
+  },
+  {
+    "slug": "commercial-fleet-towing-business-guide",
+    "title": "Commercial Fleet Towing: A Queens Business Owner's Guide",
+    "description": "Fleet towing for Queens businesses. Priority dispatch, net 30 billing, multi-vehicle service, and how to set up a commercial towing account.",
+    "category": "Business Guides",
+    "readTime": 9,
+    "intro": "If you manage a fleet of vehicles in Queens — delivery vans, contractor trucks, rideshare cars, or company vehicles — you need a towing partner, not just a towing company. Commercial fleet towing works differently from personal towing: priority dispatch, consolidated billing, dedicated account managers, and response times that don't cost you business. This guide shows you how to set it up."
+  },
+  {
+    "slug": "motorcycle-towing-safely-transport-your-bike",
+    "title": "Motorcycle Towing: How to Safely Transport Your Bike in Queens",
+    "description": "Motorcycle towing guide for Queens riders. Proper strapping, flatbed requirements, what to check before the tow, and costs for bike transport.",
+    "category": "Vehicle Care",
+    "readTime": 8,
+    "intro": "Motorcycles require completely different towing equipment and techniques than cars. The wrong tow operator can drop your bike, scratch your paint, bend your handlebars, or damage your exhaust. This guide covers what proper motorcycle towing looks like, what questions to ask the tow company, and how to protect your bike during transport."
+  },
+  {
+    "slug": "long-distance-towing-from-queens-what-to-expect",
+    "title": "Long Distance Towing from Queens: What to Expect and What It Costs",
+    "description": "Long distance towing from Queens to Long Island, upstate NY, NJ, CT. Pricing, timing, vehicle prep, and how to choose a reliable hauler.",
+    "category": "Pricing Guides",
+    "readTime": 10,
+    "intro": "Sometimes your vehicle needs to go farther than the nearest repair shop. Whether you're moving a car to a relative upstate, transporting a vehicle you bought at auction, or getting a breakdown towed from Queens to a specialist in New Jersey, long distance towing has its own set of considerations. This guide covers everything from pricing to preparation to choosing the right hauler."
+  },
+  {
+    "slug": "junk-car-removal-queens-how-it-works",
+    "title": "Junk Car Removal in Queens: How It Works and What You Get Paid",
+    "description": "Free junk car removal in Queens NY. How it works, what paperwork you need, how much you get paid, and same-day pickup options.",
+    "category": "Consumer Guides",
+    "readTime": 8,
+    "intro": "That old car sitting in your driveway, the one that won't pass inspection and costs more to fix than it's worth — you can get rid of it today and get cash in your hand. Junk car removal in Queens is straightforward once you know how it works. This guide covers the process from first call to final payment, including what paperwork you need and what your vehicle is actually worth."
+  },
+  {
+    "slug": "electric-vehicle-towing-ev-owners-guide",
+    "title": "Electric Vehicle Towing: What Every EV Owner in Queens Needs to Know",
+    "description": "Can you tow a Tesla, Rivian, or Chevy Bolt? EV towing requirements, flatbed-only rules, battery safety, and what Queens EV owners should know.",
+    "category": "Vehicle Care",
+    "readTime": 10,
+    "intro": "Electric vehicles are everywhere in Queens now — Teslas, Rivians, Chevy Bolts, Ford Mach-Es, BMW iX. But most tow truck operators still don't know how to handle them properly. Towing an EV incorrectly can damage the battery, the motor, or the regenerative braking system. This guide covers what EV owners need to know before calling a tow truck."
+  },
+  {
+    "slug": "hit-and-run-queens-ny-what-to-do",
+    "title": "How to Handle a Hit-and-Run in Queens NY: Complete Guide",
+    "description": "Hit-and-run victim in Queens? What to do, how to file a police report, insurance claims, getting your car towed, and finding the driver.",
+    "category": "Emergency Guides",
+    "readTime": 11,
+    "intro": "You walk out to your car and find a dent, scrape, or shattered bumper with no note. Or worse, someone hits you while driving and takes off. Hit-and-runs in Queens are unfortunately common — the NYPD handles thousands every year. This guide walks you through exactly what to do, how to report it, how to handle insurance, and how to get your damaged vehicle towed and repaired."
+  },
+  {
+    "slug": "dangerous-intersections-queens-car-accidents",
+    "title": "Top 10 Most Dangerous Intersections in Queens for Car Accidents",
+    "description": "Queens NY's most accident-prone intersections based on NYPD crash data. Where to drive carefully and what to do after an accident at each location.",
+    "category": "Local Guides",
+    "readTime": 12,
+    "intro": "Some Queens intersections are responsible for a disproportionate number of accidents. Whether it's poor visibility, confusing lane markings, high pedestrian traffic, or aggressive driver behavior, these locations consistently appear in NYPD crash statistics. Knowing where the danger zones are helps you drive more carefully — and knowing who to call when something goes wrong at one of them can save you hours of stress."
+  },
+  {
+    "slug": "spring-pothole-season-queens-protect-your-car",
+    "title": "Spring Pothole Season in Queens: How to Protect Your Car",
+    "description": "Queens pothole season damages thousands of cars every spring. Tire blowouts, bent rims, suspension damage. Prevention tips and what to do when you hit one.",
+    "category": "Seasonal Guides",
+    "readTime": 9,
+    "intro": "Every spring, Queens streets become an obstacle course. Winter freeze-thaw cycles open up potholes that can destroy tires, bend wheels, crack suspension components, and knock your alignment out of spec in a single hit. Some of these road craters are deep enough to cause immediate blowouts. This guide covers how to avoid pothole damage, what to do when you hit one, and how to file a claim with the city if the damage is severe."
+  },
+  {
+    "slug": "roadside-emergency-kit-queens-drivers",
+    "title": "The Ultimate Roadside Emergency Kit for Queens Drivers",
+    "description": "What to keep in your car for emergencies in Queens NY. Essential items, seasonal additions, and gear that could save your life on the BQE.",
+    "category": "DIY Guides",
+    "readTime": 8,
+    "intro": "You don't plan for breakdowns — that's the whole point of having an emergency kit. The items in your trunk can mean the difference between a minor inconvenience and a major ordeal, especially on Queens highways where waiting for help can take time and being stranded at night is genuinely dangerous. This guide lists exactly what to carry, organized by priority level."
   }
 ]

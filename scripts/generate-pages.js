@@ -641,9 +641,9 @@ function buildComboPage(service, neighborhood) {
 <div class="mobile-call-bar"><a href="${PHONE_HREF}">&#128222; Tap to Call ${PHONE}</a></div>
 
 <script src="/js/main.js"></script>
-<script src="/js/analytics.js"></script>
-<script src="/js/ayah-chat.js"></script>
-<script src="/js/tawkto.js"></script>
+<script src="/js/analytics.js" defer></script>
+<script src="/js/ayah-chat.js" defer></script>
+<script src="/js/tawkto.js" defer></script>
 </body>
 </html>`;
   return html;
