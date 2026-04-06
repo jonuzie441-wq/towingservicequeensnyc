@@ -95,6 +95,7 @@
     <div class="tab" onclick="switchTab('contacts',this)">Contacts</div>
     <div class="tab" onclick="switchTab('chats',this)">Ayah Chats</div>
     <div class="tab" onclick="switchTab('analytics',this)">Analytics</div>
+    <div class="tab" onclick="switchTab('competitors',this)">Competitors</div>
   </div>
 
   <div class="content">
@@ -149,6 +150,17 @@
       </div>
     </div>
 
+    <!-- Competitors Tab -->
+    <div id="tab-competitors" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <h2 style="font-size:18px;">Competitor Monitor</h2>
+        <button onclick="loadCompetitors()" style="background:#a8dbc2;color:#1d2a4e;border:none;padding:8px 16px;border-radius:6px;font-weight:600;cursor:pointer;font-size:13px;">Refresh</button>
+      </div>
+      <div id="comp-loading" style="text-align:center;padding:40px;color:#888;">Click Refresh to load competitor data...</div>
+      <div id="comp-grid" style="display:none;"></div>
+      <div id="comp-table" style="display:none;margin-top:20px;"></div>
+    </div>
+
     <!-- Analytics Tab -->
     <div id="tab-analytics" style="display:none;">
       <div class="table-wrap" style="padding:20px;margin-bottom:16px;">
@@ -188,7 +200,7 @@ function doLogin() {
 function switchTab(name, el) {
   document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
   el.classList.add('active');
-  ['overview','leads','contacts','chats','analytics'].forEach(function(t){
+  ['overview','leads','contacts','chats','analytics','competitors'].forEach(function(t){
     document.getElementById('tab-'+t).style.display = t===name ? 'block' : 'none';
   });
 }
@@ -324,6 +336,142 @@ function renderAll() {
 
 function esc(s) { if(!s) return ''; var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
 function formatDate(d) { if(!d) return ''; try { return new Date(d).toLocaleString(); } catch(e) { return d; } }
+
+// ============ COMPETITOR MONITORING ============
+var MAPS_KEY = 'AIzaSyAcYvTqbXtJQmTo-m55pxKm7s-j2Vrf3us';
+var COMPETITORS = [
+  { query: 'Jonuzi Towing Rosedale NY', isYou: true },
+  { query: 'On Point Collision Towing Queens NY', isYou: false },
+  { query: 'And 1 Towing Inc Queens NY', isYou: false },
+  { query: 'Full Speed Towing Inc Queens NY', isYou: false },
+  { query: 'Auto Tow NYC Inc Queens NY', isYou: false }
+];
+
+async function fetchPlace(query) {
+  try {
+    var r = await fetch('https://places.googleapis.com/v1/places:searchText', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Goog-Api-Key': MAPS_KEY,
+        'X-Goog-FieldMask': 'places.id,places.displayName,places.rating,places.userRatingCount,places.formattedAddress,places.googleMapsUri,places.websiteUri'
+      },
+      body: JSON.stringify({ textQuery: query })
+    });
+    var data = await r.json();
+    if (data.places && data.places[0]) return data.places[0];
+    return null;
+  } catch(e) { console.error('Fetch failed for:', query, e); return null; }
+}
+
+async function loadCompetitors() {
+  var loading = document.getElementById('comp-loading');
+  var grid = document.getElementById('comp-grid');
+  var table = document.getElementById('comp-table');
+  loading.style.display = 'block';
+  loading.textContent = 'Fetching live data from Google Places API...';
+  grid.style.display = 'none';
+  table.style.display = 'none';
+
+  var results = [];
+  for (var i = 0; i < COMPETITORS.length; i++) {
+    loading.textContent = 'Fetching ' + (i+1) + '/' + COMPETITORS.length + '...';
+    var p = await fetchPlace(COMPETITORS[i].query);
+    if (p) {
+      results.push({
+        name: p.displayName ? p.displayName.text : 'Unknown',
+        rating: p.rating || 0,
+        reviews: p.userRatingCount || 0,
+        address: p.formattedAddress || '',
+        mapsUrl: p.googleMapsUri || '#',
+        website: p.websiteUri || '',
+        isYou: COMPETITORS[i].isYou
+      });
+    }
+  }
+
+  // Sort: you first, then by review count descending
+  results.sort(function(a, b) {
+    if (a.isYou) return -1;
+    if (b.isYou) return 1;
+    return b.reviews - a.reviews;
+  });
+
+  loading.style.display = 'none';
+  renderCompetitors(results);
+}
+
+function renderCompetitors(results) {
+  var grid = document.getElementById('comp-grid');
+  var table = document.getElementById('comp-table');
+
+  if (!results.length) {
+    grid.style.display = 'block';
+    grid.innerHTML = '<div class="empty">Could not fetch competitor data. Make sure your API key allows requests from this domain.</div>';
+    return;
+  }
+
+  var you = results.find(function(r) { return r.isYou; });
+  var maxReviews = Math.max.apply(null, results.map(function(r) { return r.reviews; }));
+
+  // Summary cards
+  var cardsHtml = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:20px;">';
+  if (you) {
+    cardsHtml += '<div class="stat" style="border:2px solid #a8dbc2;"><div class="stat-label">Your Rating</div><div class="stat-value gold">' + (you.rating || 'N/A') + ' &#9733;</div></div>';
+    cardsHtml += '<div class="stat" style="border:2px solid #a8dbc2;"><div class="stat-label">Your Reviews</div><div class="stat-value gold">' + you.reviews + '</div></div>';
+  }
+  var avgRating = results.filter(function(r){return !r.isYou;}).reduce(function(s,r){return s+r.rating;},0) / Math.max(results.length-1,1);
+  var avgReviews = results.filter(function(r){return !r.isYou;}).reduce(function(s,r){return s+r.reviews;},0) / Math.max(results.length-1,1);
+  cardsHtml += '<div class="stat"><div class="stat-label">Competitor Avg Rating</div><div class="stat-value">' + avgRating.toFixed(1) + ' &#9733;</div></div>';
+  cardsHtml += '<div class="stat"><div class="stat-label">Competitor Avg Reviews</div><div class="stat-value">' + Math.round(avgReviews) + '</div></div>';
+  cardsHtml += '</div>';
+
+  grid.innerHTML = cardsHtml;
+  grid.style.display = 'block';
+
+  // Comparison table
+  var tHtml = '<div class="table-wrap"><div class="table-header">Head-to-Head Comparison (Live from Google)</div>';
+  tHtml += '<table><thead><tr><th></th><th>Business</th><th>Rating</th><th>Reviews</th><th style="min-width:100px;">Review Bar</th><th>Address</th><th>Links</th></tr></thead><tbody>';
+
+  results.forEach(function(r, i) {
+    var barWidth = maxReviews > 0 ? (r.reviews / maxReviews * 100) : 0;
+    var rowStyle = r.isYou ? 'background:rgba(168,219,194,0.1);' : '';
+    var badge = r.isYou ? ' <span style="background:#a8dbc2;color:#1d2a4e;padding:2px 8px;border-radius:99px;font-size:10px;font-weight:700;vertical-align:middle;">YOU</span>' : '';
+
+    var stars = '';
+    for (var s = 0; s < 5; s++) stars += s < Math.round(r.rating) ? '&#9733;' : '&#9734;';
+
+    tHtml += '<tr style="' + rowStyle + '">';
+    tHtml += '<td style="font-weight:800;color:#888;">#' + (i+1) + '</td>';
+    tHtml += '<td style="font-weight:700;">' + esc(r.name) + badge + '</td>';
+    tHtml += '<td><span style="color:' + (r.rating >= 4.5 ? '#22c55e' : r.rating >= 4 ? '#eab308' : '#ef4444') + ';font-weight:800;">' + r.rating + '</span> <span style="color:#888;font-size:12px;">' + stars + '</span></td>';
+    tHtml += '<td style="font-weight:700;font-size:16px;">' + r.reviews + '</td>';
+    tHtml += '<td><div style="background:#222;border-radius:4px;height:10px;width:100%;"><div style="background:' + (r.isYou ? '#a8dbc2' : '#888') + ';height:10px;border-radius:4px;width:' + barWidth + '%;transition:width 0.5s;"></div></div></td>';
+    tHtml += '<td style="font-size:12px;color:#888;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + esc(r.address) + '</td>';
+    tHtml += '<td><a href="' + r.mapsUrl + '" target="_blank" style="font-size:12px;">GBP</a>';
+    if (r.website) tHtml += ' · <a href="' + r.website + '" target="_blank" style="font-size:12px;">Site</a>';
+    tHtml += '</td></tr>';
+  });
+
+  tHtml += '</tbody></table></div>';
+
+  // Action items
+  tHtml += '<div style="margin-top:16px;padding:16px;background:#141414;border-radius:12px;border:1px solid #222;">';
+  tHtml += '<div style="font-weight:700;margin-bottom:8px;color:#a8dbc2;">Action Items</div>';
+  if (you && you.reviews < maxReviews) {
+    tHtml += '<div style="color:#ccc;font-size:14px;margin-bottom:6px;">&#9888; You have <strong>' + you.reviews + '</strong> reviews vs the leader\'s <strong>' + maxReviews + '</strong>. Every new Google review moves you up in the local pack. Send review request texts after every job.</div>';
+  }
+  if (you && you.rating < avgRating) {
+    tHtml += '<div style="color:#ccc;font-size:14px;margin-bottom:6px;">&#9888; Your rating (' + you.rating + ') is below the competitor average (' + avgRating.toFixed(1) + '). Focus on service quality and follow-up.</div>';
+  }
+  if (you && you.rating >= avgRating && you.reviews >= maxReviews) {
+    tHtml += '<div style="color:#22c55e;font-size:14px;">&#9989; You\'re leading on both rating AND review count. Keep collecting reviews to maintain the gap.</div>';
+  }
+  tHtml += '</div>';
+
+  table.innerHTML = tHtml;
+  table.style.display = 'block';
+}
 </script>
 </body>
 </html>
