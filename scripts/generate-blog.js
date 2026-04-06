@@ -104,6 +104,8 @@ function buildBlogHub() {
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-897CFT6D36"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-897CFT6D36');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Towing Blog — Queens NY Automotive Guides &amp; Tips | ${BUSINESS_NAME}</title>
 <meta name="description" content="Expert towing and automotive guides for Queens NY drivers. DIY tips, emergency guides, pricing info, and seasonal advice from professional tow truck operators.">
@@ -211,6 +213,8 @@ function buildBlogPost(post, index) {
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-897CFT6D36"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-897CFT6D36');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${escapeHtml(post.title)} | ${BUSINESS_NAME}</title>
 <meta name="description" content="${escapeHtml(post.description)}">
