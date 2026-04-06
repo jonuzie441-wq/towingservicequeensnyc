@@ -3,3 +3,5 @@ node_modules
 .env*
 
 .env*.local
+.gbp-tokens.json
+gbp-posts-publer.csv
