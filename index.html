@@ -67,9 +67,25 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
 @media(min-width:900px){.hero-grid{grid-template-columns:1.4fr 1fr}}
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:32px}}
 @media(min-width:1024px){.menu-toggle{display:none}.nav-list{display:flex}}
-@media(max-width:767px){.hero{padding:36px 0 44px}.hero h1{font-size:2.2rem;margin-bottom:16px}.hero p{font-size:1rem;margin-bottom:20px}}
+.hero-label{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;background:rgba(168,219,194,.12);border:1px solid rgba(168,219,194,.3);border-radius:100px;color:#a8dbc2;font-size:.8rem;font-weight:700;margin-bottom:24px}
+.hero-label::before{content:'★★★★★';color:#a8dbc2;font-size:.7rem;letter-spacing:1px}
+.hero-buttons{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px}
+.btn{font-weight:800;font-size:1.05rem;border-radius:100px;padding:18px 36px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;border:2px solid transparent;transition:all .3s}
+.btn-primary{background:#a8dbc2;color:#1d2a4e}
+.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.25)}
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:32px;padding-top:48px;border-top:1px solid rgba(255,255,255,.12)}
+.hero-stat-number{font-size:clamp(2.25rem,3.5vw,3rem);font-weight:900;color:#a8dbc2;line-height:1;margin-bottom:8px}
+.hero-stat-label{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.65)}
+.gbp-card{background:#fff;color:#1d2a4e;border-radius:14px;padding:16px;box-shadow:0 20px 60px rgba(0,0,0,.3);max-width:420px;margin-left:auto;width:100%}
+.mobile-bottom-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999}
+.mobile-bottom-bar a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:16px 10px;font-weight:900;font-size:1.05rem;text-transform:uppercase;text-decoration:none;color:#fff}
+.mbb-call{background:#16a34a}.mbb-chat{background:#2563eb}
+@media(max-width:900px){.gbp-card{margin:0 auto}}
+@media(max-width:767px){.hero{padding:36px 0 44px}.hero h1{font-size:2.2rem;margin-bottom:16px}.hero p{font-size:1rem;margin-bottom:20px}.hero-buttons{flex-direction:column;gap:10px;margin-bottom:28px}.hero-buttons .btn{width:100%;text-align:center;padding:16px 20px;font-size:1.05rem;justify-content:center}.hero-stats{grid-template-columns:1fr 1fr;gap:16px;padding-top:24px}.mobile-bottom-bar{display:flex}body{padding-bottom:62px}.top-bar{display:none!important}.header-cta{display:none!important}.header{border-bottom:none!important;box-shadow:none!important}}
 </style>
-<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/premium.css">
+<link rel="preload" as="style" href="css/style.css" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" as="style" href="css/premium.css" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/premium.css"></noscript>
 
 <!-- Schema.org - LocalBusiness -->
 <script type="application/ld+json">
