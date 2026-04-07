@@ -33,7 +33,42 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="images/flatbed-towing-queens-nyc.webp" type="image/webp">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"></noscript>
+<style>
+/* Critical CSS — above-the-fold rendering */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.65;color:#1d2a4e;background:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
+.header{background:linear-gradient(180deg,#fff,#f8fafa);position:sticky;top:0;z-index:100;border-bottom:1px solid #e5ebe8}
+.header .container{display:flex;justify-content:space-between;align-items:center;padding:8px 20px}
+.logo{display:flex;align-items:center;gap:8px;padding:4px 0;text-decoration:none;color:inherit}
+.logo-icon{width:40px;height:40px;background:#1d2a4e;border-radius:10px;color:#fff;font-weight:900;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
+.logo-text{color:#1d2a4e;font-weight:900;font-size:1rem;line-height:1.15}
+.logo-text span{font-weight:500;color:#6b7280;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;display:block;margin-top:2px}
+.hero{background:#1d2a4e;color:#fff;padding:32px 0 48px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;filter:saturate(1.1) brightness(0.9);opacity:1}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(29,42,78,.82) 0%,rgba(15,23,41,.65) 60%,rgba(29,42,78,.5) 100%)}
+.hero .container{position:relative;z-index:3;max-width:1100px;padding-top:20px;padding-bottom:20px}
+.hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:center;position:relative;z-index:2}
+.hero h1{font-family:'Inter',sans-serif;font-size:clamp(2.5rem,7vw,5.5rem);font-weight:900;line-height:1.02;letter-spacing:-.045em;color:#fff;margin-bottom:28px}
+.hero h1 em{font-style:normal}
+.hero h1 .accent{color:#a8dbc2}
+.hero p{font-size:clamp(1.1rem,1.5vw,1.3rem);line-height:1.55;color:rgba(255,255,255,.85);max-width:720px;margin-bottom:40px}
+.nav-list{display:none}
+.menu-toggle{display:flex;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px}
+.menu-toggle span{width:28px;height:3px;background:#1d2a4e;border-radius:2px}
+.header-cta{display:none}
+.skip-to-content{position:absolute;top:-100%}
+.top-bar{display:none}
+@media(min-width:768px){.header-cta{display:flex}.top-bar{display:block}}
+@media(min-width:900px){.hero-grid{grid-template-columns:1.4fr 1fr}}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:32px}}
+@media(min-width:1024px){.menu-toggle{display:none}.nav-list{display:flex}}
+@media(max-width:767px){.hero{padding:36px 0 44px}.hero h1{font-size:2.2rem;margin-bottom:16px}.hero p{font-size:1rem;margin-bottom:20px}}
+</style>
 <link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/premium.css">
 
 <!-- Schema.org - LocalBusiness -->
