@@ -1204,21 +1204,34 @@ p { color: var(--gray-600); font-size: 1rem; line-height: 1.6; }
   .header .container { justify-content: space-between !important; }
   .logo-text { font-size: 1.1rem !important; }
 
-  /* Bottom bar — extra vibrant */
+  /* Hamburger menu — make visible on white header */
+  .menu-toggle span { background: var(--navy) !important; }
+
+  /* Kill gap between header and hero */
+  .header { border-bottom: none !important; margin-bottom: 0 !important; box-shadow: none !important; }
+  .header .container { padding: 6px 16px !important; }
+  .hero { margin-top: 0 !important; padding-top: 24px !important; }
+
+  /* Bottom bar — bold, vibrant, impossible to miss */
   .mobile-bottom-bar {
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.25) !important;
+    box-shadow: 0 -6px 24px rgba(0,0,0,0.35) !important;
+    border-top: 1px solid rgba(255,255,255,0.15);
   }
   .mbb-call {
-    background: linear-gradient(180deg, #34d058 0%, #16a34a 50%, #0f8a3e 100%) !important;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3) !important;
-    font-size: 1.1rem !important;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    background: linear-gradient(180deg, #4ade80 0%, #22c55e 35%, #16a34a 100%) !important;
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.35) !important;
+    font-size: 1.15rem !important;
+    padding: 18px 10px !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    letter-spacing: 1px;
   }
   .mbb-chat {
-    background: linear-gradient(180deg, #60a5fa 0%, #2563eb 50%, #1d4ed8 100%) !important;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3) !important;
-    font-size: 1.1rem !important;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 35%, #2563eb 100%) !important;
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.35) !important;
+    font-size: 1.15rem !important;
+    padding: 18px 10px !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    letter-spacing: 1px;
   }
 }
 
