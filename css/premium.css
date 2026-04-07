@@ -1207,6 +1207,30 @@ p { color: var(--gray-600); font-size: 1rem; line-height: 1.6; }
   /* Hamburger menu — make visible on white header */
   .menu-toggle span { background: var(--navy) !important; }
 
+  /* Mobile nav dropdown — white text on dark bg */
+  .nav-list {
+    background: var(--navy-dark) !important;
+    z-index: 999 !important;
+  }
+  .nav-list > li > a {
+    color: #fff !important;
+    font-size: 1.1rem !important;
+    padding: 16px 20px !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  }
+  .nav-list > li > a:hover,
+  .nav-list > li > a.active {
+    color: var(--mint) !important;
+  }
+  .nav-dropdown-content a {
+    color: rgba(255,255,255,0.8) !important;
+    padding: 12px 20px !important;
+    font-size: 1rem !important;
+  }
+  .nav-dropdown-content a:hover {
+    color: var(--mint) !important;
+  }
+
   /* Kill gap between header and hero */
   .header { border-bottom: none !important; margin-bottom: 0 !important; box-shadow: none !important; }
   .header .container { padding: 6px 16px !important; }
