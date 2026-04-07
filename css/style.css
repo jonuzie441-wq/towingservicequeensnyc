@@ -48,25 +48,32 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Accessibility - Larger text mode */
-body.a11y-large { font-size: 20px; }
-body.a11y-large h1 { font-size: 3rem !important; }
-body.a11y-large h2 { font-size: 2.2rem !important; }
-body.a11y-large h3 { font-size: 1.4rem !important; }
-body.a11y-large p, body.a11y-large li, body.a11y-large a { font-size: 1.15rem !important; line-height: 1.9 !important; }
-
-/* Accessibility - High contrast mode */
-body.a11y-contrast { background: #000 !important; color: #fff !important; }
-body.a11y-contrast .section, body.a11y-contrast .feature-item, body.a11y-contrast .service-card-body { background: #111 !important; color: #fff !important; }
-body.a11y-contrast p, body.a11y-contrast li, body.a11y-contrast span, body.a11y-contrast a { color: #fff !important; }
-body.a11y-contrast h1, body.a11y-contrast h2, body.a11y-contrast h3 { color: #d4a017 !important; }
-
-/* Accessibility widget */
-#a11y-widget { position: fixed; top: 50%; left: 0; transform: translateY(-50%); z-index: 9998; display: flex; flex-direction: column; gap: 2px; }
-#a11y-widget button { background: #222; color: #fff; border: none; padding: 10px 12px; cursor: pointer; font-size: 14px; text-align: left; width: 44px; overflow: hidden; transition: width 0.3s, background 0.3s; white-space: nowrap; border-radius: 0 6px 6px 0; }
-#a11y-widget button:hover { width: 180px; background: #d4a017; color: #111; }
-#a11y-widget button span { margin-left: 8px; }
-@media(max-width:767px) { #a11y-widget { top: auto; bottom: 140px; } }
+/* ============ MOBILE BOTTOM BAR — Two Big CTA Buttons ============ */
+.mobile-bottom-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  gap: 0;
+}
+.mobile-bottom-bar a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 10px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+}
+.mbb-call { background: #16a34a; color: #fff !important; }
+.mbb-chat { background: #2563eb; color: #fff !important; }
 
 img { max-width: 100%; height: auto; display: block; }
 a { text-decoration: none; color: inherit; transition: var(--transition); }
@@ -164,8 +171,8 @@ h1, h2, h3, h4, h5, h6 {
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 0;
+  gap: 8px;
+  padding: 4px 0;
 }
 
 .logo-icon {
@@ -1159,32 +1166,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 12px;
 }
 
-/* ============ MOBILE CALL BAR ============ */
-.mobile-call-bar {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--primary);
-  padding: 14px;
-  text-align: center;
-  z-index: 9999;
-  box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
-}
-
-.mobile-call-bar a {
-  color: var(--white);
-  font-family: 'Oswald', sans-serif;
-  font-weight: 700;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
+/* (mobile-call-bar replaced by mobile-bottom-bar — see above) */
 
 /* ============ GOOGLE REVIEWS BADGE ============ */
 .google-badge {
@@ -1231,7 +1213,7 @@ h1, h2, h3, h4, h5, h6 {
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
   .content-layout { grid-template-columns: 2fr 1fr; }
   .header-cta { display: block; }
-  .mobile-call-bar { display: none !important; }
+  .mobile-bottom-bar { display: none !important; }
   .page-hero h1 { font-size: 2.8rem; }
   .cta-banner .phone-number { font-size: 3rem; }
 }
@@ -1286,9 +1268,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 767px) {
-  .mobile-call-bar { display: block; }
+  .mobile-bottom-bar { display: flex; }
   .top-bar-left { display: none; }
-  body { padding-bottom: 58px; }
+  body { padding-bottom: 62px; }
   .hero h1 { font-size: 2rem; }
   .cta-banner h2 { font-size: 1.5rem; }
   .service-card-image { height: 180px; }

@@ -89,13 +89,7 @@
   function render() {
     let html = '';
 
-    // Preview greeting — shows before chat opened
-    if (showPreview && !isOpen && !previewDismissed) {
-      html += `<div id="ayah-preview">
-        <div id="ayah-preview-inner" onclick="window.ayahOpen()">Hey! Ayah here 👋 Need a tow or roadside help? Tap here to chat!</div>
-        <div id="ayah-preview-close" onclick="event.stopPropagation();window.ayahDismiss()">✕</div>
-      </div>`;
-    }
+    // Preview bubble removed — CTAs in top bar and mobile bottom bar now
 
     // Chat window
     if (isOpen) {
@@ -142,14 +136,7 @@
       </div>`;
     }
 
-    // Toggle button — hidden when chat is open on mobile
-    if (!isOpen) {
-      html += `<button id="ayah-toggle" onclick="window.ayahOpen()">
-        ${showPreview && !previewDismissed ? '<span id="ayah-dot"></span>' : ''}
-        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-        Chat with Ayah
-      </button>`;
-    }
+    // Gold floating toggle removed — chat opens via top bar & mobile bottom bar CTAs
 
     widget.innerHTML = html;
 
