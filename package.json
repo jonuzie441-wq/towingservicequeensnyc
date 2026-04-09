@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/jonuzie441-wq/towingservicequeensnyc#readme",
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.82.0"
+    "@anthropic-ai/sdk": "^0.82.0",
+    "puppeteer": "^24.40.0"
   }
 }

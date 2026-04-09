@@ -122,8 +122,6 @@ function buildNeighborhoodPage(n) {
           "closes": "23:59"
         },
         "sameAs": SAME_AS,
-        "aggregateRating": AGGREGATE_RATING,
-        "review": REVIEWS,
         "hasMap": GBP_URL
       },
       {

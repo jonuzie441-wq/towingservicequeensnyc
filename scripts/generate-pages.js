@@ -358,8 +358,6 @@ function buildComboPage(service, neighborhood) {
             "addressCountry": "US"
           },
           "sameAs": SAME_AS,
-          "aggregateRating": AGGREGATE_RATING,
-          "review": REVIEWS,
           "hasMap": GBP_URL
         },
         "areaServed": {

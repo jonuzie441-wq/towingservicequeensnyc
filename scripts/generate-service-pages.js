@@ -106,8 +106,6 @@ function buildServicePage(service) {
           "telephone": "+1-347-437-0185",
           "url": SITE_URL,
           "sameAs": SAME_AS,
-          "aggregateRating": AGGREGATE_RATING,
-          "review": REVIEWS,
           "hasMap": GBP_URL
         },
         "areaServed": {

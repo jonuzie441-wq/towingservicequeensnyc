@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jonuzi Towing — Citation Builder</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f172a;color:#fff;padding:24px;min-height:100vh}
+h1{font-size:1.5rem;margin-bottom:8px}
+.subtitle{color:#94a3af;margin-bottom:24px}
+.info-box{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:16px;margin-bottom:24px;font-size:0.9rem;line-height:1.6}
+.info-box strong{color:#a8dbc2}
+.copy-btn{background:#2563eb;color:#fff;border:none;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:0.8rem;margin-left:8px}
+.copy-btn:hover{background:#1d4ed8}
+.copy-btn.copied{background:#16a34a}
+.grid{display:grid;gap:12px}
+.dir{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:all 0.2s}
+.dir:hover{border-color:#a8dbc2}
+.dir.done{opacity:0.4;border-color:#16a34a}
+.dir-left{flex:1}
+.dir-name{font-weight:700;font-size:1.05rem;margin-bottom:4px}
+.dir-tier{display:inline-block;background:#334155;padding:2px 8px;border-radius:4px;font-size:0.7rem;margin-left:8px}
+.tier-1{background:#16a34a;color:#fff}
+.tier-2{background:#2563eb;color:#fff}
+.tier-3{background:#6b7280;color:#fff}
+.dir-notes{color:#94a3af;font-size:0.85rem;margin-top:4px}
+.dir-right{display:flex;gap:8px;flex-shrink:0}
+.open-btn{background:#a8dbc2;color:#0f172a;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-weight:700;font-size:0.9rem}
+.open-btn:hover{background:#6ec39a}
+.done-btn{background:#334155;color:#fff;border:none;padding:10px 16px;border-radius:8px;cursor:pointer;font-size:0.9rem}
+.done-btn:hover{background:#16a34a}
+.progress{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:16px;margin-bottom:24px;text-align:center}
+.progress-bar{background:#334155;border-radius:8px;height:12px;margin-top:8px;overflow:hidden}
+.progress-fill{background:linear-gradient(90deg,#16a34a,#a8dbc2);height:100%;border-radius:8px;transition:width 0.3s}
+.progress-text{font-size:2rem;font-weight:900;color:#a8dbc2}
+</style>
+</head>
+<body>
+<h1>Jonuzi Towing — Citation Builder</h1>
+<p class="subtitle">Click "Open" for each directory, fill out the form, then click "Done" to track progress.</p>
+
+<div class="info-box">
+<strong>Business Info (click to copy any field):</strong><br><br>
+<span onclick="copyText('Jonuzi Towing')" style="cursor:pointer">Name: <strong>Jonuzi Towing</strong></span> <button class="copy-btn" onclick="copyText('Jonuzi Towing')">Copy</button><br>
+<span onclick="copyText('155-57 Bayview Ave')" style="cursor:pointer">Address: <strong>155-57 Bayview Ave</strong></span> <button class="copy-btn" onclick="copyText('155-57 Bayview Ave')">Copy</button><br>
+<span onclick="copyText('Rosedale')" style="cursor:pointer">City: <strong>Rosedale</strong></span> <button class="copy-btn" onclick="copyText('Rosedale')">Copy</button><br>
+<span onclick="copyText('NY')" style="cursor:pointer">State: <strong>NY</strong></span> <button class="copy-btn" onclick="copyText('NY')">Copy</button><br>
+<span onclick="copyText('11422')" style="cursor:pointer">ZIP: <strong>11422</strong></span> <button class="copy-btn" onclick="copyText('11422')">Copy</button><br>
+<span onclick="copyText('(347) 437-0185')" style="cursor:pointer">Phone: <strong>(347) 437-0185</strong></span> <button class="copy-btn" onclick="copyText('(347) 437-0185')">Copy</button><br>
+<span onclick="copyText('https://towingservicequeensnyc.com')" style="cursor:pointer">Website: <strong>towingservicequeensnyc.com</strong></span> <button class="copy-btn" onclick="copyText('https://towingservicequeensnyc.com')">Copy</button><br>
+<span onclick="copyText('info@towingservicequeensnyc.com')" style="cursor:pointer">Email: <strong>info@towingservicequeensnyc.com</strong></span> <button class="copy-btn" onclick="copyText('info@towingservicequeensnyc.com')">Copy</button><br>
+<span onclick="copyText('Towing Service')" style="cursor:pointer">Category: <strong>Towing Service</strong></span> <button class="copy-btn" onclick="copyText('Towing Service')">Copy</button><br><br>
+<button class="copy-btn" style="font-size:0.9rem;padding:8px 16px" onclick="copyText('Jonuzi Towing is Queens\' trusted 24/7 towing and roadside assistance provider, serving all 115+ neighborhoods from Astoria to Far Rockaway. We specialize in emergency towing, flatbed towing, heavy-duty towing, motorcycle towing, lockout service, jump starts, flat tire changes, fuel delivery, winching & recovery, accident recovery, junk car removal, exotic car transport, and long-distance towing. Our team responds in 15-30 minutes with professional, fully-equipped tow trucks. No hidden fees — upfront pricing on every call.')">Copy Full Description</button>
+</div>
+
+<div class="progress">
+<div class="progress-text" id="progressText">0 / 20</div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+const dirs = [
+  { name:'Yelp', url:'https://biz.yelp.com/signup_business/new', tier:1, notes:'Create account, verify phone, add business.' },
+  { name:'Apple Business Connect', url:'https://businessconnect.apple.com/', tier:1, notes:'Sign in with Apple ID, search & claim your business.' },
+  { name:'Bing Places', url:'https://www.bingplaces.com/', tier:1, notes:'Import from Google Business Profile — fastest option.' },
+  { name:'BBB', url:'https://www.bbb.org/get-listed', tier:1, notes:'Free listing available. Fill the form.' },
+  { name:'Yellow Pages', url:'https://adsolutions.yp.com/free-listing', tier:1, notes:'Free basic listing.' },
+  { name:'Foursquare', url:'https://business.foursquare.com/add-your-business', tier:1, notes:'Add business location.' },
+  { name:'MapQuest', url:'https://www.mapquest.com/add-a-business', tier:2, notes:'Uses Yext. Add business.' },
+  { name:'Manta', url:'https://www.manta.com/claim', tier:2, notes:'Search for business, claim or add.' },
+  { name:'Nextdoor Business', url:'https://business.nextdoor.com/', tier:2, notes:'Strong local visibility. Create business account.' },
+  { name:'Thumbtack', url:'https://www.thumbtack.com/pro', tier:2, notes:'Sign up as a pro. Also generates leads.' },
+  { name:'Hotfrog', url:'https://www.hotfrog.com/add-a-business', tier:2, notes:'Quick form — fill and submit.' },
+  { name:'Brownbook', url:'https://www.brownbook.net/add-company/', tier:2, notes:'Simple add company form.' },
+  { name:'Cylex', url:'https://www.cylex.us.com/add-company.html', tier:2, notes:'Add company form.' },
+  { name:'n49', url:'https://www.n49.com/add-business', tier:2, notes:'Add business form.' },
+  { name:'Towing.com', url:'https://www.towing.com/Company/Register/', tier:2, notes:'Industry directory — register company.' },
+  { name:'ShowMeLocal', url:'https://www.showmelocal.com/addyourbusiness.aspx', tier:3, notes:'Add your business form.' },
+  { name:'Chamber of Commerce', url:'https://www.chamberofcommerce.com/add-your-business', tier:3, notes:'Add business.' },
+  { name:'Alignable', url:'https://www.alignable.com/signup', tier:3, notes:'Business networking profile.' },
+  { name:'Angi', url:'https://www.angi.com/pro/signup', tier:2, notes:'Pro signup for leads.' },
+  { name:'Bark', url:'https://www.bark.com/en/us/company-registration/', tier:3, notes:'Register as service provider.' },
+];
+
+let completed = JSON.parse(localStorage.getItem('citationsDone') || '[]');
+
+function render() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  dirs.forEach((d, i) => {
+    const isDone = completed.includes(i);
+    grid.innerHTML += `
+      <div class="dir ${isDone ? 'done' : ''}" id="dir-${i}">
+        <div class="dir-left">
+          <div class="dir-name">${d.name} <span class="dir-tier tier-${d.tier}">Tier ${d.tier}</span></div>
+          <div class="dir-notes">${d.notes}</div>
+        </div>
+        <div class="dir-right">
+          <button class="open-btn" onclick="window.open('${d.url}','_blank')">Open</button>
+          <button class="done-btn" onclick="toggleDone(${i})">${isDone ? 'Undo' : 'Done'}</button>
+        </div>
+      </div>`;
+  });
+  updateProgress();
+}
+
+function toggleDone(i) {
+  if (completed.includes(i)) {
+    completed = completed.filter(x => x !== i);
+  } else {
+    completed.push(i);
+  }
+  localStorage.setItem('citationsDone', JSON.stringify(completed));
+  render();
+}
+
+function updateProgress() {
+  const pct = Math.round((completed.length / dirs.length) * 100);
+  document.getElementById('progressText').textContent = `${completed.length} / ${dirs.length}`;
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    event.target.classList.add('copied');
+    const orig = event.target.textContent;
+    event.target.textContent = 'Copied!';
+    setTimeout(() => { event.target.textContent = orig; event.target.classList.remove('copied'); }, 1500);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
