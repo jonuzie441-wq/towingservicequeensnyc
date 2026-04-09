@@ -16,20 +16,34 @@ const SAME_AS = [SOCIAL.facebook, SOCIAL.instagram, SOCIAL.youtube, SOCIAL.gbp];
 // Real GBP review data — update ratingCount/reviewCount as new reviews come in
 const AGGREGATE_RATING = {
   '@type': 'AggregateRating',
-  ratingValue: '5.0',
+  ratingValue: '4.9',
   bestRating: '5',
   worstRating: '1',
-  ratingCount: '5',
-  reviewCount: '5'
+  ratingCount: '19',
+  reviewCount: '19'
 };
 
 const REVIEWS = [
   {
     '@type': 'Review',
+    author: { '@type': 'Person', name: 'The M.' },
+    datePublished: '2026-03-15',
+    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+    reviewBody: "Outstanding Service! I had an excellent experience with Jonuzi Towing. From start to finish, their professionalism and customer service were truly impressive. The driver arrived quickly, handled my vehicle with great care, and clearly knew exactly what he was doing. What stood out most was their communication — clear updates, fair pricing with no surprises, and a genuine willingness to help."
+  },
+  {
+    '@type': 'Review',
     author: { '@type': 'Person', name: 'Kay P.' },
     datePublished: '2025-12-20',
     reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-    reviewBody: "I called for tow truck in Queens area and hired Jonuzi Towing in Queens. I am super happy with the tow truck service, service was fast and professional. Whenever you guys are in need for tow truck in Queens don't forget to hire Jonuzi towing. Best tow truck service in Queens."
+    reviewBody: "I called for tow truck in Queens area and hired Jonuzi Towing in Queens. I am super happy with the tow truck service, service was fast and professional. Best tow truck service in Queens."
+  },
+  {
+    '@type': 'Review',
+    author: { '@type': 'Person', name: 'KGamer T.' },
+    datePublished: '2026-02-10',
+    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+    reviewBody: "Great service! I called Jonuzi Towing when my car broke down and they showed up really fast."
   },
   {
     '@type': 'Review',
@@ -40,10 +54,73 @@ const REVIEWS = [
   },
   {
     '@type': 'Review',
+    author: { '@type': 'Person', name: 'Diana S.' },
+    datePublished: '2026-01-20',
+    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+    reviewBody: "Sergio came quickly to the rescue towing my car. He was very considerate with my request."
+  },
+  {
+    '@type': 'Review',
+    author: { '@type': 'Person', name: 'Hayley D.' },
+    datePublished: '2026-02-05',
+    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+    reviewBody: "Alex is truly given 5 stars! He was so beyond helpful throughout the towing process."
+  },
+  {
+    '@type': 'Review',
     author: { '@type': 'Person', name: 'Daniel Campasano' },
     datePublished: '2025-11-29',
     reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-    reviewBody: "My car broke down in the middle of the street, and I was lucky enough to have been in front of a jonuzi towing truck who helped me out of the kindness of there heart, drove my car back to my parking lot. Service was fast and efficient. The guy was super nice and helpful. I highly recommend people to use this company."
+    reviewBody: "My car broke down in the middle of the street, and I was lucky enough to have been in front of a Jonuzi towing truck who helped me out of the kindness of their heart. Service was fast and efficient. I highly recommend people to use this company."
+  },
+  {
+    '@type': 'Review',
+    author: { '@type': 'Person', name: 'Janice S.' },
+    datePublished: '2026-01-15',
+    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+    reviewBody: "The tow driver was very professional. He called to inform me that he was running a little late."
+  },
+  {
+    '@type': 'Review',
+    author: { '@type': 'Person', name: 'Astoria M.' },
+    datePublished: '2026-02-20',
+    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+    reviewBody: "Hendrix is a hidden gem. He came, he saw, he conquered. He was fast and efficient."
+  },
+  {
+    '@type': 'Review',
+    author: { '@type': 'Person', name: 'Jeannatalee B.' },
+    datePublished: '2026-03-01',
+    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+    reviewBody: "Steve did a great job getting me to my inspection appointment on time."
+  },
+  {
+    '@type': 'Review',
+    author: { '@type': 'Person', name: 'Ahmad' },
+    datePublished: '2026-03-10',
+    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+    reviewBody: "Super fast service, the price was fair and the driver was very friendly."
+  },
+  {
+    '@type': 'Review',
+    author: { '@type': 'Person', name: 'Megan Michalski' },
+    datePublished: '2025-07-05',
+    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+    reviewBody: "Arrived to assist me quickly. He towed my car to the destination quickly and safely. Great communication. Very reliable."
+  },
+  {
+    '@type': 'Review',
+    author: { '@type': 'Person', name: 'Gabe J.' },
+    datePublished: '2026-02-25',
+    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+    reviewBody: "Provided excellent and speedy service. Prioritized safety and great communication."
+  },
+  {
+    '@type': 'Review',
+    author: { '@type': 'Person', name: 'Arlind L.' },
+    datePublished: '2026-03-05',
+    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+    reviewBody: "Very professional handling service. I highly recommend this company!"
   },
   {
     '@type': 'Review',
@@ -54,20 +131,30 @@ const REVIEWS = [
   },
   {
     '@type': 'Review',
-    author: { '@type': 'Person', name: 'Megan Michalski' },
-    datePublished: '2025-07-05',
+    author: { '@type': 'Person', name: 'Prezidential H.' },
+    datePublished: '2026-03-20',
     reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-    reviewBody: "Arrived to assist me quickly. He towed my car to the destination quickly and safely. Great communication. Very reliable."
+    reviewBody: "Excellent service, not 1 complaint. Will recommend!!!"
+  },
+  {
+    '@type': 'Review',
+    author: { '@type': 'Person', name: 'Vince M.' },
+    datePublished: '2026-03-25',
+    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+    reviewBody: "On time, good manners."
   }
 ];
 
 // 2 short display reviews for on-page testimonial blocks (keeps HTML compact)
 const DISPLAY_REVIEWS_SHORT = [
+  { name: 'The M.', text: 'Outstanding Service! Professionalism and customer service were truly impressive. Fair pricing with no surprises.' },
   { name: 'Kay P.', text: 'Super happy with the tow truck service — fast and professional. Best tow truck service in Queens.' },
-  { name: 'Nickia Williams', text: 'Got my car from the tightest driveway to CarMax without any hiccups. Price matched and super efficient. Highly recommend.' },
-  { name: 'Daniel Campasano', text: 'My car broke down and they helped me out of the kindness of their heart. Fast, efficient, saved me such a headache.' },
-  { name: 'Lorena Ferrer', text: 'Timely, effective and reliable service. Very helpful and professional.' },
-  { name: 'Megan Michalski', text: 'Arrived quickly, towed safely, great communication. Very reliable.' }
+  { name: 'Hayley D.', text: 'Alex is truly given 5 stars! He was so beyond helpful throughout the towing process.' },
+  { name: 'Astoria M.', text: 'Hendrix is a hidden gem. He came, he saw, he conquered. Fast and efficient.' },
+  { name: 'Ahmad', text: 'Super fast service, the price was fair and the driver was very friendly.' },
+  { name: 'Nickia Williams', text: 'Got my car from the tightest driveway to CarMax without any hiccups. Price matched and super efficient.' },
+  { name: 'Gabe J.', text: 'Provided excellent and speedy service. Prioritized safety and great communication.' },
+  { name: 'Daniel Campasano', text: 'My car broke down and they helped me out of the kindness of their heart. Fast, efficient, highly recommend.' }
 ];
 
 const YOUTUBE_SHORTS = [
