@@ -336,9 +336,16 @@ function buildNeighborhoodPage(n) {
     <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">Beyond trucks, we carry all the tools needed for roadside assistance: professional jump starters, tire change equipment, fuel containers, lockout tools, diagnostic equipment, and safety gear including cones, flares, and reflective equipment. Every vehicle is stocked and ready to handle whatever situation we encounter in ${n.name}.</p>
     <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:30px;">Our equipment is maintained to the highest standards. Trucks are inspected before every shift. Tools are checked regularly. Safety equipment is replaced when needed. This maintenance means fewer breakdowns of our own, fewer delays in service, and more reliable help when you need it in ${n.name}.</p>
 
-    <h2>Nearby Queens Neighborhoods We Also Serve</h2>
-    <ul style="font-size:1rem;line-height:1.9;color:#d4a017;margin-bottom:30px;padding-left:20px;">
-      ${neighborhoods.filter(x=>x.slug!==n.slug && x.region===n.region).slice(0,10).map(x => `<li><a href="/neighborhoods/${x.slug}/" style="color:#d4a017;">Towing in ${x.name}</a></li>`).join('')}
+    <h2>All Services Available in ${n.name}</h2>
+    <p style="font-size:1rem;line-height:1.75;color:#555;margin-bottom:15px;">We provide every towing and roadside service in ${n.name}. Click any service for details specific to this neighborhood:</p>
+    <ul style="font-size:1rem;line-height:1.9;margin-bottom:30px;padding-left:20px;">
+      ${services.map(x => `<li><a href="/services/${x.slug}-in-${n.slug}-queens-ny/" style="color:#d4a017;"><strong>${x.name}</strong> in ${n.name}</a></li>`).join('')}
+    </ul>
+
+    <h2>Nearby Queens Neighborhoods</h2>
+    <p style="font-size:1rem;line-height:1.75;color:#555;margin-bottom:15px;">We also serve these nearby neighborhoods:</p>
+    <ul style="font-size:1rem;line-height:1.9;margin-bottom:30px;padding-left:20px;">
+      ${neighborhoods.filter(x=>x.slug!==n.slug && x.region===n.region).slice(0,12).map(x => `<li><a href="/neighborhoods/${x.slug}/" style="color:#d4a017;">Towing in <strong>${x.name}</strong></a></li>`).join('')}
     </ul>
 
   </div>

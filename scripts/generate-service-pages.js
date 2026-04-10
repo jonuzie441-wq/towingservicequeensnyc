@@ -321,10 +321,16 @@ function buildServicePage(service) {
     <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">Third, we're honest about pricing. Some towing companies quote low on the phone then add fees when they arrive. We don't play those games. The price we quote is the price you pay. If something changes during the job that affects pricing, we tell you before doing the work. You always know what you're paying for.</p>
     <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:30px;">Fourth, we invest in professional equipment and ongoing training. Our trucks are modern, well-maintained, and equipped with everything needed for ${service.name.toLowerCase()} jobs. Our drivers attend training sessions on new vehicle technology, safety procedures, and customer service. This investment shows up in the quality of service you receive.</p>
 
-    <h2>Related Services We Offer in Queens</h2>
-    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">Beyond ${service.name.toLowerCase()}, we provide complete automotive emergency and roadside services throughout Queens. If your situation requires a different service, or you need multiple services at once, we can handle it:</p>
-    <ul style="font-size:1rem;line-height:1.9;color:#d4a017;margin-bottom:30px;padding-left:20px;">
-      ${services.filter(x=>x.slug!==service.slug).slice(0,10).map(x => `<li><a href="/services/${x.slug}/" style="color:#d4a017;">${x.name}</a> — ${x.description}</li>`).join('')}
+    <h2>${service.name} by Queens Neighborhood</h2>
+    <p style="font-size:1rem;line-height:1.75;color:#555;margin-bottom:15px;">Find ${service.name.toLowerCase()} details specific to your Queens neighborhood:</p>
+    <ul style="font-size:1rem;line-height:1.9;margin-bottom:30px;padding-left:20px;columns:2;">
+      ${neighborhoods.map(n => `<li><a href="/services/${service.slug}-in-${n.slug}-queens-ny/" style="color:#d4a017;">${service.name} in <strong>${n.name}</strong></a></li>`).join('')}
+    </ul>
+
+    <h2>Related Services We Offer</h2>
+    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">Beyond ${service.name.toLowerCase()}, we provide complete automotive emergency and roadside services:</p>
+    <ul style="font-size:1rem;line-height:1.9;margin-bottom:30px;padding-left:20px;">
+      ${services.filter(x=>x.slug!==service.slug).map(x => `<li><a href="/services/${x.slug}/" style="color:#d4a017;"><strong>${x.name}</strong></a> — ${x.description}</li>`).join('')}
     </ul>
 
   </div>

@@ -579,16 +579,22 @@ function buildComboPage(service, neighborhood) {
       <p style="color:#999;margin-top:16px;font-size:0.9rem;">24/7 dispatch &middot; 15-30 minute response &middot; Licensed &amp; insured</p>
     </div>
 
-    <h2>Related ${neighborhood.name} Towing Services</h2>
-    <p style="font-size:1rem;line-height:1.75;color:#555;margin-bottom:15px;">Need a different service in ${neighborhood.name}? We offer these related services:</p>
-    <ul style="font-size:1rem;line-height:1.9;color:#d4a017;margin-bottom:30px;padding-left:20px;">
-      ${services.filter(x=>x.slug!==service.slug).slice(0,8).map(x => `<li><a href="/services/${x.slug}-in-${neighborhood.slug}-queens-ny/" style="color:#d4a017;">${x.name} in ${neighborhood.name}</a></li>`).join('')}
+    <h2>More About <a href="/neighborhoods/${neighborhood.slug}/" style="color:#d4a017;">${neighborhood.name}, Queens</a></h2>
+    <p style="font-size:1rem;line-height:1.75;color:#555;margin-bottom:15px;">Learn more about our full towing and roadside assistance coverage in <a href="/neighborhoods/${neighborhood.slug}/" style="color:#d4a017;font-weight:600;">${neighborhood.name}</a>, including response times, service details, and local coverage maps.</p>
+
+    <h2>All Services in ${neighborhood.name}</h2>
+    <p style="font-size:1rem;line-height:1.75;color:#555;margin-bottom:15px;">Need a different service in <a href="/neighborhoods/${neighborhood.slug}/" style="color:#d4a017;">${neighborhood.name}</a>? We offer all of these:</p>
+    <ul style="font-size:1rem;line-height:1.9;margin-bottom:30px;padding-left:20px;">
+      ${services.filter(x=>x.slug!==service.slug).map(x => `<li><a href="/services/${x.slug}-in-${neighborhood.slug}-queens-ny/" style="color:#d4a017;">${x.name} in ${neighborhood.name}</a></li>`).join('')}
     </ul>
 
-    <h2>${service.name} in Nearby Queens Neighborhoods</h2>
-    <p style="font-size:1rem;line-height:1.75;color:#555;margin-bottom:15px;">We also provide ${service.name.toLowerCase()} in these nearby Queens neighborhoods:</p>
-    <ul style="font-size:1rem;line-height:1.9;color:#d4a017;margin-bottom:30px;padding-left:20px;">
-      ${neighborhoods.filter(n=>n.slug!==neighborhood.slug && n.region===neighborhood.region).slice(0,8).map(n => `<li><a href="/services/${service.slug}-in-${n.slug}-queens-ny/" style="color:#d4a017;">${service.name} in ${n.name}</a></li>`).join('')}
+    <h2>More About <a href="/services/${service.slug}/" style="color:#d4a017;">${service.name}</a></h2>
+    <p style="font-size:1rem;line-height:1.75;color:#555;margin-bottom:15px;">Visit our main <a href="/services/${service.slug}/" style="color:#d4a017;font-weight:600;">${service.name}</a> page for complete details about this service across all of Queens.</p>
+
+    <h2>${service.name} in Nearby Neighborhoods</h2>
+    <p style="font-size:1rem;line-height:1.75;color:#555;margin-bottom:15px;">We also provide <a href="/services/${service.slug}/" style="color:#d4a017;">${service.name.toLowerCase()}</a> in these nearby Queens neighborhoods:</p>
+    <ul style="font-size:1rem;line-height:1.9;margin-bottom:30px;padding-left:20px;">
+      ${neighborhoods.filter(n=>n.slug!==neighborhood.slug && n.region===neighborhood.region).slice(0,10).map(n => `<li><a href="/services/${service.slug}-in-${n.slug}-queens-ny/" style="color:#d4a017;">${service.name} in <strong>${n.name}</strong></a></li>`).join('')}
     </ul>
 
   </div>
