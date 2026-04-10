@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jonuzi Towing — Local Outreach Builder</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f172a;color:#fff;padding:24px;min-height:100vh}
+h1{font-size:1.5rem;margin-bottom:8px}
+.subtitle{color:#94a3af;margin-bottom:24px}
+.tabs{display:flex;gap:8px;margin-bottom:24px;border-bottom:2px solid #334155;padding-bottom:0}
+.tab{background:none;border:none;color:#94a3af;padding:12px 20px;cursor:pointer;font-size:1rem;font-weight:700;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab.active{color:#a8dbc2;border-color:#a8dbc2}
+.panel{display:none}
+.panel.active{display:block}
+.template{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px;margin-bottom:16px}
+.template-title{font-size:1.1rem;font-weight:700;color:#a8dbc2;margin-bottom:8px}
+.template-use{color:#94a3af;font-size:0.85rem;margin-bottom:12px}
+.template-body{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:16px;font-family:'Courier New',monospace;font-size:0.9rem;line-height:1.6;white-space:pre-wrap;color:#e5e7eb}
+.copy-btn{background:#2563eb;color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-weight:700;margin-top:12px}
+.copy-btn.copied{background:#16a34a}
+.biz-item{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.biz-item.done{opacity:0.4;border-color:#16a34a}
+.biz-name{font-weight:700;font-size:1.05rem}
+.biz-type{color:#94a3af;font-size:0.85rem}
+.biz-search{background:#a8dbc2;color:#0f172a;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-weight:700;text-decoration:none}
+.done-btn{background:#334155;color:#fff;border:none;padding:10px 16px;border-radius:8px;cursor:pointer}
+.search-box{background:#1e293b;border:2px solid #334155;color:#fff;padding:14px;border-radius:10px;width:100%;font-size:1rem;margin-bottom:20px}
+</style>
+</head>
+<body>
+<h1>Jonuzi Towing — Local Outreach Builder</h1>
+<p class="subtitle">Find local Queens businesses, get personalized email templates, build real backlinks.</p>
+
+<div class="tabs">
+<button class="tab active" onclick="showTab('templates')">Email Templates</button>
+<button class="tab" onclick="showTab('partners')">Partnership Targets</button>
+<button class="tab" onclick="showTab('press')">Press Pitches</button>
+</div>
+
+<!-- ============ EMAIL TEMPLATES ============ -->
+<div class="panel active" id="templates">
+
+<div class="template">
+<div class="template-title">1. Auto Repair Shop — Link Exchange</div>
+<div class="template-use">Use for: Independent auto repair shops in Queens. Offer mutual referrals and a link.</div>
+<div class="template-body">Subject: Quick partnership idea — local tow & repair in Queens
+
+Hi [Owner Name],
+
+I run Jonuzi Towing here in Queens. We're a local 24/7 tow service based in Rosedale, and I noticed [Shop Name] is nearby.
+
+Here's a thought: we get calls all day from drivers who need a tow AND a mechanic afterward. When that happens, we recommend a nearby shop to our customer. Right now we don't have a go-to partner in [neighborhood].
+
+Would you be interested in a referral arrangement? Simple setup:
+— We send towed vehicles your way when customers need repairs
+— You recommend us when your customers need a tow
+— We each add a link to the other's website on our partners page
+
+No money changes hands, just honest referrals between two local businesses.
+
+If you're interested, I can stop by or we can jump on a quick call.
+
+Thanks,
+Endri — Jonuzi Towing
+(347) 437-0185
+https://towingservicequeensnyc.com</div>
+<button class="copy-btn" onclick="copy(this)">Copy Template</button>
+</div>
+
+<div class="template">
+<div class="template-title">2. Insurance Agent — Referral Partnership</div>
+<div class="template-use">Use for: Local insurance brokers in Queens (State Farm, Allstate, local independents).</div>
+<div class="template-body">Subject: Trusted towing referral for your Queens clients
+
+Hi [Agent Name],
+
+I'm Endri, owner of Jonuzi Towing — a 24/7 licensed tow service in Queens. I work with a lot of insurance claims and I noticed your office serves the [neighborhood] area.
+
+A thought: when your policyholders get into an accident or breakdown, they often ask "who do I call for a tow?" Having a trusted local answer helps them and protects their claim.
+
+I'd like to offer your clients:
+— Priority dispatch when they mention your agency
+— Direct insurance billing, no out-of-pocket
+— Full documentation for claim files
+— 15-30 minute response anywhere in Queens
+
+In return, I'd appreciate being listed as a preferred vendor on your website (most agencies have a "partners" or "recommended vendors" page).
+
+Happy to send you our insurance paperwork or meet briefly. Let me know what works.
+
+Thanks,
+Endri — Jonuzi Towing
+(347) 437-0185
+https://towingservicequeensnyc.com</div>
+<button class="copy-btn" onclick="copy(this)">Copy Template</button>
+</div>
+
+<div class="template">
+<div class="template-title">3. Used Car Dealership — Vendor Listing</div>
+<div class="template-use">Use for: Small-to-mid Queens used car dealers (not big chains).</div>
+<div class="template-body">Subject: Local towing vendor for your lot — Jonuzi Towing
+
+Hi [Dealer Name],
+
+I'm the owner of Jonuzi Towing, a 24/7 licensed tow service based in Queens. We work with several local dealerships moving vehicles between lots, auctions, customer pickups, and repair facilities.
+
+Offering our service to [Dealership Name]:
+— Flatbed transport for luxury and damaged inventory
+— Wheel-lift for standard vehicles
+— Fleet account with net-30 billing available
+— Same-day response, 24/7 availability
+— Fully insured for vehicle transport
+
+If you don't already have a dedicated tow vendor, we'd like to be considered. I'd also appreciate if we could be added to your website's vendor or partners list if you keep one.
+
+Can I drop off a rate card and my insurance certificate?
+
+Thanks,
+Endri — Jonuzi Towing
+(347) 437-0185
+https://towingservicequeensnyc.com</div>
+<button class="copy-btn" onclick="copy(this)">Copy Template</button>
+</div>
+
+<div class="template">
+<div class="template-title">4. Auto Body Shop — Accident Recovery Partner</div>
+<div class="template-use">Use for: Collision centers and auto body shops in Queens.</div>
+<div class="template-body">Subject: Accident tow partner for [Shop Name]
+
+Hi,
+
+I'm Endri from Jonuzi Towing. We handle a lot of accident recovery calls in Queens and I noticed [Shop Name] does collision work in [neighborhood].
+
+After an accident, drivers need two things fast: a tow and a body shop. Right now when we tow an accident vehicle, we don't have a default shop to recommend in your area.
+
+I'd like to:
+— Recommend your shop when customers need body work after a tow
+— Be your go-to tow vendor for accident scenes
+— Exchange links between our websites as partners
+
+This isn't a paid referral thing — just two local businesses helping each other and the customer. Insurance handles the money.
+
+Interested? Happy to swing by the shop.
+
+Endri — Jonuzi Towing
+(347) 437-0185
+https://towingservicequeensnyc.com</div>
+<button class="copy-btn" onclick="copy(this)">Copy Template</button>
+</div>
+
+<div class="template">
+<div class="template-title">5. Local Blog / News — Story Pitch</div>
+<div class="template-use">Use for: Queens Chronicle, QNS, Patch, Queens Daily Eagle reporters.</div>
+<div class="template-body">Subject: Story idea — Queens towing company & the pothole epidemic
+
+Hi [Reporter Name],
+
+I read your coverage of [recent story] and thought you might be interested in a story angle I'm seeing first-hand.
+
+I own Jonuzi Towing in Queens, and we've been responding to a dramatic increase in pothole-related tire blowouts and bent-rim calls across the borough. I have data on which streets are the worst, photos of the damage, and customer stories from [neighborhoods].
+
+A few angles that might work:
+— Queens' worst pothole streets, as told by a tow truck driver
+— What to do when you hit a pothole (driver safety tips)
+— How NYC drivers can get reimbursed for pothole damage
+— Behind the scenes with a Queens tow company
+
+I'm available for interview or to provide data/photos. My company has been serving Queens since 2024, and I personally drive and respond to calls in every neighborhood.
+
+Let me know if any of this interests you.
+
+Endri — Jonuzi Towing
+(347) 437-0185
+https://towingservicequeensnyc.com</div>
+<button class="copy-btn" onclick="copy(this)">Copy Template</button>
+</div>
+
+<div class="template">
+<div class="template-title">6. Queens Chamber of Commerce — Membership Inquiry</div>
+<div class="template-use">Use for: Emailing Queens Chamber of Commerce directly about membership.</div>
+<div class="template-body">Subject: Membership inquiry — Jonuzi Towing (Rosedale)
+
+Hi,
+
+I'm interested in joining the Queens Chamber of Commerce for my business, Jonuzi Towing. We're a 24/7 towing and roadside assistance company based in Rosedale, serving all Queens neighborhoods.
+
+Could you send me information on:
+— Membership tiers and pricing
+— Benefits included with each tier
+— Member directory listing on queenschamber.org
+— Networking events coming up
+
+I'm looking to become more active in the local business community and support Queens small business initiatives.
+
+Thanks,
+Endri — Jonuzi Towing
+155-57 Bayview Ave, Rosedale, NY 11422
+(347) 437-0185
+https://towingservicequeensnyc.com</div>
+<button class="copy-btn" onclick="copy(this)">Copy Template</button>
+</div>
+
+<div class="template">
+<div class="template-title">7. Local Nonprofit / Community Group — Sponsorship Offer</div>
+<div class="template-use">Use for: Queens little leagues, schools, food banks, community events.</div>
+<div class="template-body">Subject: Local business sponsorship for [Organization Name]
+
+Hi,
+
+I'm Endri, owner of Jonuzi Towing in Rosedale. We're a local Queens family business and I'd like to support [Organization Name].
+
+I'm interested in:
+— Sponsoring your [event/team/program]
+— Contributing [amount range $100-500] or in-kind services
+— Being listed on your sponsors page if you have one
+
+We're also happy to provide free towing assistance at community events if that would help.
+
+Can you send me info on your current sponsorship opportunities?
+
+Thanks for everything you do for our community.
+
+Endri — Jonuzi Towing
+(347) 437-0185
+https://towingservicequeensnyc.com</div>
+<button class="copy-btn" onclick="copy(this)">Copy Template</button>
+</div>
+
+</div>
+
+<!-- ============ PARTNERSHIP TARGETS ============ -->
+<div class="panel" id="partners">
+<input type="text" class="search-box" placeholder="Search..." id="searchBox" oninput="filterBiz()">
+<p style="color:#94a3af;margin-bottom:20px;font-size:0.9rem;">Click "Search Google Maps" to find local businesses of each type. Copy their email/contact info and send them template 1-4.</p>
+<div id="partnersList"></div>
+</div>
+
+<!-- ============ PRESS PITCHES ============ -->
+<div class="panel" id="press">
+<div class="template">
+<div class="template-title">Queens Local Press Contacts</div>
+<div class="template-body">Queens Chronicle
+  Website: qchron.com
+  Email: editor@qchron.com
+  Best section: Business, Community
+
+QNS (Queens Neighborhood News)
+  Website: qns.com
+  Email: news@qns.com
+  Best section: Business, Community news
+
+Patch — Queens sections
+  Astoria Patch: patch.com/new-york/astoria
+  Forest Hills Patch: patch.com/new-york/foresthills
+  Email format: [neighborhood]patch@patch.com
+
+Queens Daily Eagle
+  Website: queenseagle.com
+  Email: editor@queenseagle.com
+
+AMNY
+  Website: amny.com
+  Email: news@amny.com
+
+New York Post — Queens Bureau
+  Website: nypost.com
+  Email: letters@nypost.com
+
+Daily News — Queens
+  Website: nydailynews.com
+  Email: voicers@nydailynews.com
+
+Bklyner / QNSer
+  Website: bklyner.com
+  Email: tips@bklyner.com</div>
+<button class="copy-btn" onclick="copy(this)">Copy List</button>
+</div>
+</div>
+
+<script>
+const partners = [
+  // Auto Repair Shops — 20
+  { name:'Queens Auto Repair Shops', type:'Auto Repair', search:'auto repair shop queens ny' },
+  { name:'Astoria Auto Repair', type:'Auto Repair', search:'auto repair astoria queens' },
+  { name:'Jamaica Auto Repair', type:'Auto Repair', search:'auto repair jamaica queens' },
+  { name:'Flushing Auto Repair', type:'Auto Repair', search:'auto repair flushing queens' },
+  { name:'Forest Hills Auto Repair', type:'Auto Repair', search:'auto repair forest hills queens' },
+  { name:'Bayside Auto Repair', type:'Auto Repair', search:'auto repair bayside queens' },
+  { name:'Howard Beach Auto Repair', type:'Auto Repair', search:'auto repair howard beach queens' },
+  { name:'Ridgewood Auto Repair', type:'Auto Repair', search:'auto repair ridgewood queens' },
+  { name:'Rosedale Auto Repair', type:'Auto Repair', search:'auto repair rosedale queens' },
+
+  // Auto Body Shops — 8
+  { name:'Queens Auto Body Shops', type:'Auto Body', search:'auto body shop queens ny' },
+  { name:'Collision Repair Queens', type:'Auto Body', search:'collision repair queens ny' },
+  { name:'Paint Shops Queens', type:'Auto Body', search:'auto paint shop queens' },
+
+  // Used Car Dealers — 8
+  { name:'Used Car Dealers Queens', type:'Used Cars', search:'used car dealership queens ny' },
+  { name:'Car Dealerships Queens Blvd', type:'Used Cars', search:'car dealership queens boulevard' },
+  { name:'Northern Blvd Car Dealers', type:'Used Cars', search:'car dealership northern boulevard queens' },
+
+  // Insurance Agents — 8
+  { name:'State Farm Agents Queens', type:'Insurance', search:'state farm agent queens ny' },
+  { name:'Allstate Agents Queens', type:'Insurance', search:'allstate agent queens ny' },
+  { name:'Geico Queens', type:'Insurance', search:'geico office queens ny' },
+  { name:'Liberty Mutual Queens', type:'Insurance', search:'liberty mutual agent queens' },
+  { name:'Independent Insurance Queens', type:'Insurance', search:'independent insurance agent queens ny' },
+
+  // Mechanics — 6
+  { name:'Mechanics Queens', type:'Mechanic', search:'mechanic near me queens ny' },
+  { name:'Transmission Shops', type:'Mechanic', search:'transmission repair queens ny' },
+  { name:'Brake Shops Queens', type:'Mechanic', search:'brake shop queens ny' },
+
+  // Tire Shops — 5
+  { name:'Tire Shops Queens', type:'Tire Shop', search:'tire shop queens ny' },
+  { name:'Discount Tires Queens', type:'Tire Shop', search:'discount tire queens' },
+
+  // Chambers & Business Groups — 6
+  { name:'Queens Chamber of Commerce', type:'Chamber', search:'queens chamber of commerce' },
+  { name:'Queens EDC', type:'Chamber', search:'queens economic development corporation' },
+  { name:'Rockaway Business Alliance', type:'Chamber', search:'rockaway business alliance' },
+  { name:'Astoria Chamber of Commerce', type:'Chamber', search:'astoria chamber of commerce' },
+
+  // Local Blogs & Press — 8
+  { name:'Queens Chronicle', type:'Press', search:'queens chronicle qchron.com contact' },
+  { name:'QNS.com', type:'Press', search:'qns.com queens news contact' },
+  { name:'Queens Daily Eagle', type:'Press', search:'queens daily eagle contact' },
+  { name:'Patch Astoria', type:'Press', search:'astoria patch news contact' },
+  { name:'Patch Forest Hills', type:'Press', search:'forest hills patch news contact' },
+  { name:'AMNY Queens', type:'Press', search:'amny queens reporter' },
+  { name:'NY Post Queens Bureau', type:'Press', search:'new york post queens bureau' },
+];
+
+let done = JSON.parse(localStorage.getItem('outreachDone') || '[]');
+
+function renderPartners(filter='') {
+  const list = document.getElementById('partnersList');
+  list.innerHTML = '';
+  const filtered = partners.filter(p =>
+    p.name.toLowerCase().includes(filter.toLowerCase()) ||
+    p.type.toLowerCase().includes(filter.toLowerCase())
+  );
+  filtered.forEach((p, i) => {
+    const isDone = done.includes(p.name);
+    list.innerHTML += `
+      <div class="biz-item ${isDone?'done':''}">
+        <div>
+          <div class="biz-name">${p.name}</div>
+          <div class="biz-type">${p.type}</div>
+        </div>
+        <div style="display:flex;gap:8px;flex-shrink:0">
+          <a class="biz-search" href="https://www.google.com/maps/search/${encodeURIComponent(p.search)}" target="_blank">Search Maps</a>
+          <button class="done-btn" onclick="toggleDone('${p.name}')">${isDone?'Undo':'Done'}</button>
+        </div>
+      </div>`;
+  });
+}
+
+function toggleDone(name) {
+  if (done.includes(name)) done = done.filter(n => n !== name);
+  else done.push(name);
+  localStorage.setItem('outreachDone', JSON.stringify(done));
+  renderPartners(document.getElementById('searchBox').value);
+}
+
+function filterBiz() {
+  renderPartners(document.getElementById('searchBox').value);
+}
+
+function showTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+function copy(btn) {
+  const text = btn.previousElementSibling.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.classList.remove('copied'); btn.textContent = 'Copy Template'; }, 1500);
+  });
+}
+
+renderPartners();
+</script>
+</body>
+</html>

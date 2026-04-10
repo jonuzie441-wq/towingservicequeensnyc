@@ -23,7 +23,11 @@ h1{font-size:1.5rem;margin-bottom:8px}
 .dir-tier{display:inline-block;background:#334155;padding:2px 8px;border-radius:4px;font-size:0.7rem;margin-left:8px}
 .tier-1{background:#16a34a;color:#fff}
 .tier-2{background:#2563eb;color:#fff}
-.tier-3{background:#6b7280;color:#fff}
+.tier-3{background:#a855f7;color:#fff}
+.tier-4{background:#f59e0b;color:#fff}
+.tier-5{background:#6b7280;color:#fff}
+.tier-6{background:#0891b2;color:#fff}
+.tier-7{background:#dc2626;color:#fff}
 .dir-notes{color:#94a3af;font-size:0.85rem;margin-top:4px}
 .dir-right{display:flex;gap:8px;flex-shrink:0}
 .open-btn{background:#a8dbc2;color:#0f172a;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-weight:700;font-size:0.9rem}
@@ -55,34 +59,99 @@ h1{font-size:1.5rem;margin-bottom:8px}
 </div>
 
 <div class="progress">
-<div class="progress-text" id="progressText">0 / 20</div>
+<div class="progress-text" id="progressText">0 / 70</div>
 <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+<p style="margin-top:12px;font-size:0.85rem;color:#94a3af;">Tier 1 = highest SEO impact. Start with these. Do 5-10 per day, not all at once (looks spammy).</p>
 </div>
 
 <div class="grid" id="grid"></div>
 
 <script>
 const dirs = [
+  // TIER 1 — Highest authority, biggest impact
+  { name:'Google Business Profile', url:'https://business.google.com/', tier:1, notes:'✅ Already have — verify all info is complete.' },
   { name:'Yelp', url:'https://biz.yelp.com/signup_business/new', tier:1, notes:'Create account, verify phone, add business.' },
   { name:'Apple Business Connect', url:'https://businessconnect.apple.com/', tier:1, notes:'Sign in with Apple ID, search & claim your business.' },
   { name:'Bing Places', url:'https://www.bingplaces.com/', tier:1, notes:'Import from Google Business Profile — fastest option.' },
   { name:'BBB', url:'https://www.bbb.org/get-listed', tier:1, notes:'Free listing available. Fill the form.' },
   { name:'Yellow Pages', url:'https://adsolutions.yp.com/free-listing', tier:1, notes:'Free basic listing.' },
-  { name:'Foursquare', url:'https://business.foursquare.com/add-your-business', tier:1, notes:'Add business location.' },
+  { name:'Foursquare City Guide', url:'https://foursquare.com/', tier:1, notes:'Add business via Foursquare city guide.' },
+  { name:'Facebook Business', url:'https://business.facebook.com/', tier:1, notes:'✅ Already have — verify website link is set.' },
+  { name:'LinkedIn Company Page', url:'https://www.linkedin.com/company/setup/new/', tier:1, notes:'Create company page, add website link in profile.' },
+  { name:'Instagram Business', url:'https://business.instagram.com/', tier:1, notes:'✅ Already have — add website in bio.' },
+  { name:'YouTube Channel', url:'https://www.youtube.com/channel_switcher', tier:1, notes:'✅ Already have — website link in description.' },
+  { name:'TikTok Business', url:'https://ads.tiktok.com/business/', tier:1, notes:'Create free business profile.' },
+
+  // TIER 2 — Strong citations
   { name:'MapQuest', url:'https://www.mapquest.com/add-a-business', tier:2, notes:'Uses Yext. Add business.' },
   { name:'Manta', url:'https://www.manta.com/claim', tier:2, notes:'Search for business, claim or add.' },
   { name:'Nextdoor Business', url:'https://business.nextdoor.com/', tier:2, notes:'Strong local visibility. Create business account.' },
   { name:'Thumbtack', url:'https://www.thumbtack.com/pro', tier:2, notes:'Sign up as a pro. Also generates leads.' },
+  { name:'Superpages', url:'https://www.superpages.com/', tier:2, notes:'Add business listing.' },
+  { name:'CitySearch', url:'https://www.citysearch.com/', tier:2, notes:'Local business directory.' },
   { name:'Hotfrog', url:'https://www.hotfrog.com/add-a-business', tier:2, notes:'Quick form — fill and submit.' },
   { name:'Brownbook', url:'https://www.brownbook.net/add-company/', tier:2, notes:'Simple add company form.' },
   { name:'Cylex', url:'https://www.cylex.us.com/add-company.html', tier:2, notes:'Add company form.' },
   { name:'n49', url:'https://www.n49.com/add-business', tier:2, notes:'Add business form.' },
   { name:'Towing.com', url:'https://www.towing.com/Company/Register/', tier:2, notes:'Industry directory — register company.' },
-  { name:'ShowMeLocal', url:'https://www.showmelocal.com/addyourbusiness.aspx', tier:3, notes:'Add your business form.' },
-  { name:'Chamber of Commerce', url:'https://www.chamberofcommerce.com/add-your-business', tier:3, notes:'Add business.' },
-  { name:'Alignable', url:'https://www.alignable.com/signup', tier:3, notes:'Business networking profile.' },
-  { name:'Angi', url:'https://www.angi.com/pro/signup', tier:2, notes:'Pro signup for leads.' },
-  { name:'Bark', url:'https://www.bark.com/en/us/company-registration/', tier:3, notes:'Register as service provider.' },
+  { name:'Tuugo', url:'https://www.tuugo.us/AddCompany', tier:2, notes:'Free business listing.' },
+  { name:'eLocal', url:'https://www.elocal.com/', tier:2, notes:'Local business directory.' },
+  { name:'Angi (Angie\'s List)', url:'https://www.angi.com/pro/signup', tier:2, notes:'Pro signup for leads.' },
+  { name:'Crunchbase', url:'https://www.crunchbase.com/add-organization', tier:2, notes:'Add company profile.' },
+  { name:'Kompass', url:'https://us.kompass.com/', tier:2, notes:'B2B directory — create company profile.' },
+  { name:'Dun & Bradstreet', url:'https://www.dnb.com/duns-number/get-a-duns.html', tier:2, notes:'Get free D-U-N-S number + listing.' },
+
+  // TIER 3 — Industry-specific (towing/auto)
+  { name:'Find Tow Trucks', url:'https://www.findtowtrucks.com/', tier:3, notes:'Towing-specific directory.' },
+  { name:'TowRecruiter', url:'https://www.towrecruiter.com/', tier:3, notes:'Towing industry directory.' },
+  { name:'RepairPal', url:'https://repairpal.com/shop-owners', tier:3, notes:'Auto repair network — some accept towing.' },
+  { name:'Car Talk Community', url:'https://community.cartalk.com/', tier:3, notes:'Auto community — create business profile.' },
+  { name:'AutoMD', url:'https://www.automd.com/', tier:3, notes:'Auto services directory.' },
+  { name:'iFixit Business', url:'https://www.ifixit.com/', tier:3, notes:'Repair business directory.' },
+
+  // TIER 4 — Local NYC / Queens directories
+  { name:'NYC.com', url:'https://www.nyc.com/', tier:4, notes:'NYC business listings.' },
+  { name:'Queens Chamber of Commerce', url:'https://www.queenschamber.org/membership/', tier:4, notes:'💰 Paid membership ($300-500/yr) = authority link. HIGHEST IMPACT.' },
+  { name:'Time Out New York', url:'https://www.timeout.com/newyork', tier:4, notes:'Submit business for review/listing.' },
+  { name:'Alignable', url:'https://www.alignable.com/signup', tier:4, notes:'Business networking profile.' },
+  { name:'Bark', url:'https://www.bark.com/en/us/company-registration/', tier:4, notes:'Register as service provider.' },
+  { name:'HomeAdvisor', url:'https://pro.homeadvisor.com/', tier:4, notes:'Pro signup.' },
+  { name:'Porch', url:'https://pro.porch.com/', tier:4, notes:'Home services pro profile.' },
+  { name:'Houzz Pro', url:'https://www.houzz.com/pro/register', tier:4, notes:'Service provider profile.' },
+
+  // TIER 5 — General high-DA directories
+  { name:'Whitepages', url:'https://www.whitepages.com/', tier:5, notes:'Business listing.' },
+  { name:'411.com', url:'https://www.411.com/', tier:5, notes:'Business directory.' },
+  { name:'Local.com', url:'https://www.local.com/business/', tier:5, notes:'Add business listing.' },
+  { name:'ShowMeLocal', url:'https://www.showmelocal.com/addyourbusiness.aspx', tier:5, notes:'Add your business form.' },
+  { name:'Chamber of Commerce.com', url:'https://www.chamberofcommerce.com/add-your-business', tier:5, notes:'Add business.' },
+  { name:'MerchantCircle', url:'https://www.merchantcircle.com/business/signup', tier:5, notes:'Local merchant directory.' },
+  { name:'CitySquares', url:'https://citysquares.com/', tier:5, notes:'Free business listing.' },
+  { name:'Spoke.com', url:'https://www.spoke.com/', tier:5, notes:'Business profiles.' },
+  { name:'MyHuckleberry', url:'https://www.myhuckleberry.com/', tier:5, notes:'Local directory.' },
+  { name:'2FindLocal', url:'https://www.2findlocal.com/', tier:5, notes:'Local business directory.' },
+  { name:'Where To?', url:'https://whereto.us/', tier:5, notes:'Business locator.' },
+  { name:'BizHwy', url:'https://www.bizhwy.com/add-business.php', tier:5, notes:'Free listing.' },
+  { name:'GoLocal247', url:'https://www.golocal247.com/', tier:5, notes:'Business directory.' },
+  { name:'LocalStack', url:'https://www.localstack.com/', tier:5, notes:'Local listings.' },
+  { name:'Opendi', url:'https://www.opendi.us/', tier:5, notes:'Business directory.' },
+  { name:'Expressupdate', url:'https://www.expressupdate.com/', tier:5, notes:'Data aggregator — updates to Apple, Bing, etc.' },
+
+  // TIER 6 — Social/profile citations
+  { name:'About.me', url:'https://about.me/', tier:6, notes:'Create business profile with backlink.' },
+  { name:'Gravatar', url:'https://gravatar.com/', tier:6, notes:'Create profile with business link.' },
+  { name:'Pinterest Business', url:'https://business.pinterest.com/en/', tier:6, notes:'Create pinboards — website citations.' },
+  { name:'Tumblr', url:'https://www.tumblr.com/', tier:6, notes:'Create blog with your business info.' },
+  { name:'Medium', url:'https://medium.com/new-story', tier:6, notes:'Write an article about towing tips.' },
+  { name:'Quora Space', url:'https://www.quora.com/spaces', tier:6, notes:'Create space or answer towing questions.' },
+  { name:'Reddit Business Profile', url:'https://www.reddit.com/register', tier:6, notes:'Create account, engage in r/NYC, r/queens.' },
+
+  // TIER 7 — Review platforms
+  { name:'Trustpilot', url:'https://business.trustpilot.com/signup', tier:7, notes:'Business profile + reviews.' },
+  { name:'Sitejabber', url:'https://www.sitejabber.com/business/list', tier:7, notes:'Claim/add business.' },
+  { name:'ConsumerAffairs', url:'https://www.consumeraffairs.com/', tier:7, notes:'Business review platform.' },
+  { name:'Yellowbot', url:'https://www.yellowbot.com/', tier:7, notes:'Local business reviews.' },
+  { name:'Insider Pages', url:'https://www.insiderpages.com/', tier:7, notes:'Local business directory.' },
 ];
 
 let completed = JSON.parse(localStorage.getItem('citationsDone') || '[]');
