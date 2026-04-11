@@ -208,44 +208,42 @@ function buildFaqPool(service, neighborhood, s) {
   const landmark = seedPick(neighborhood.landmarks, s+2);
   const highway = seedPick(neighborhood.highways, s+3);
   const zip = neighborhood.zip.split(',')[0].trim();
-  const sn = service.name.toLowerCase();
-
   return [
-    { q: `How fast can you provide ${sn} in ${neighborhood.name}?`,
-      a: `Our ${sn} service arrives in ${neighborhood.name} within 15-30 minutes in most cases. We have tow trucks stationed throughout Queens and we prioritize emergency calls. When you call dispatch, we immediately route the nearest available truck to your exact location — whether you're near ${street1}, ${street2}, or anywhere else in ${neighborhood.name}. Response depends on traffic and active call volume, but we consistently average under 30 minutes throughout ${neighborhood.region}.` },
-    { q: `How much does ${sn} cost in ${neighborhood.name}, NY?`,
-      a: `${service.name} in ${neighborhood.name} typically ranges from $${service.priceMin} to $${service.priceMax}, depending on vehicle type, the specific service needed, distance, time of day, and road conditions. Upfront pricing before any work — no hidden fees. For a precise quote specific to your situation, call ${PHONE} and dispatch will give you a firm price based on exact location and needs.` },
-    { q: `Are you available 24/7 in ${neighborhood.name}?`,
-      a: `Yes, ${sn} runs 24 hours a day, 7 days a week, 365 days a year throughout ${neighborhood.name} and all of Queens. Whether you need help at 3 AM on a Tuesday, during rush hour on the ${highway}, on Christmas morning, or during a snowstorm, we answer every call and dispatch trucks around the clock. Car problems don't follow business hours; neither do we.` },
-    { q: `What areas near ${neighborhood.name} do you serve?`,
-      a: `In addition to ${neighborhood.name} (ZIP ${neighborhood.zip}), we serve all surrounding neighborhoods in ${neighborhood.region} and throughout Queens. Our ${sn} service covers every street, highway, and location in the borough. We respond near ${landmark}, along the ${highway}, and throughout ${neighborhood.commercialAreas.split(',')[0]}. No location in Queens is outside our service area.` },
-    { q: `What payment methods do you accept for ${sn} in ${neighborhood.name}?`,
-      a: `Cash, all major credit cards (Visa, Mastercard, Amex, Discover), debit, and mobile payment. For accident recovery and insurance claims, we can bill your insurance directly. For commercial accounts, we offer net 30 invoicing and fleet billing. Payment is collected when service is completed.` },
-    { q: `Do you handle ${service.vehicleTypes.split(',')[0]} in ${neighborhood.name}?`,
-      a: `Absolutely. Our ${sn} service in ${neighborhood.name} handles ${service.vehicleTypes}. We have the proper equipment, training, and experience to safely service every type of vehicle on the road. Whether you're near ${landmark} or anywhere else in ${neighborhood.name}, we can handle your specific vehicle with confidence.` },
-    { q: `Can you provide ${sn} near ${landmark}?`,
-      a: `Yes, ${landmark} is in our regular service area. We respond throughout ${neighborhood.name} including locations near ${landmark}, along ${street1}, and throughout the neighborhood. Our drivers know these streets and can reach you quickly regardless of your specific location.` },
-    { q: `What if I need ${sn} on the ${highway}?`,
+    { q: `How fast can you get here?`,
+      a: `We arrive in ${neighborhood.name} within 15-30 minutes in most cases. Our trucks are stationed throughout Queens and we prioritize urgent calls. When you call dispatch, we immediately route the nearest available driver to your exact location — whether you're near ${street1}, ${street2}, or anywhere else in the area. Response depends on traffic and active call volume, but we consistently average under 30 minutes throughout ${neighborhood.region}.` },
+    { q: `How much will it cost?`,
+      a: `Pricing in ${neighborhood.name} typically ranges from $${service.priceMin} to $${service.priceMax}, depending on vehicle type, the specific situation, distance, time of day, and road conditions. Upfront pricing before any work — no hidden fees. For a precise quote, call ${PHONE} and dispatch will give you a firm price based on your exact location and needs.` },
+    { q: `Are you available 24/7?`,
+      a: `Yes, we run 24 hours a day, 7 days a week, 365 days a year throughout ${neighborhood.name} and all of Queens. Whether you need help at 3 AM on a Tuesday, during rush hour on the ${highway}, on Christmas morning, or during a snowstorm, we answer every call and dispatch trucks around the clock. Car problems don't follow business hours; neither do we.` },
+    { q: `What areas near ${neighborhood.name} do you cover?`,
+      a: `In addition to ${neighborhood.name} (ZIP ${neighborhood.zip}), we serve all surrounding neighborhoods in ${neighborhood.region} and throughout Queens. We respond near ${landmark}, along the ${highway}, and throughout ${neighborhood.commercialAreas.split(',')[0]}. No location in Queens is outside our coverage area.` },
+    { q: `What payment methods do you accept?`,
+      a: `Cash, all major credit cards (Visa, Mastercard, Amex, Discover), debit, and mobile payment. For accident recovery and insurance claims, we can bill your insurance directly. For commercial accounts, we offer net 30 invoicing and fleet billing. Payment is collected when work is completed.` },
+    { q: `Do you handle ${service.vehicleTypes.split(',')[0]}?`,
+      a: `Absolutely. We work with ${service.vehicleTypes}. We have the proper equipment, training, and experience to safely handle every type of vehicle on the road. Whether you're near ${landmark} or anywhere else in ${neighborhood.name}, we can help with confidence.` },
+    { q: `Can you reach me near ${landmark}?`,
+      a: `Yes, ${landmark} is in our regular coverage area. We respond throughout ${neighborhood.name} including locations near ${landmark}, along ${street1}, and throughout the neighborhood. Our drivers know these streets and can reach you quickly regardless of your specific location.` },
+    { q: `What if I'm on the ${highway}?`,
       a: `We handle calls on the ${highway} and all major highways in ${neighborhood.region}. Highway calls require extra safety precautions, and our drivers are trained in highway recovery procedures. When you call, tell dispatch your exact location (mile marker, nearest exit, or landmark) and we'll respond with appropriate equipment and safety gear.` },
-    { q: `Do you offer other services besides ${sn} in ${neighborhood.name}?`,
-      a: `Yes. Beyond ${sn}, we provide complete towing and roadside assistance throughout ${neighborhood.name}: emergency towing, flatbed, heavy duty, motorcycle, lockouts, jump starts, tire changes, fuel delivery, winching, accident recovery, long distance towing, and more. One call handles whatever automotive emergency you're facing.` },
-    { q: `How do I request ${sn} service in ${neighborhood.name}?`,
-      a: `Call ${PHONE} and tell dispatch your exact location (cross streets or address), vehicle information, and what happened. We immediately dispatch the nearest appropriate truck and give you an ETA. You can also chat with our AI dispatcher Ayah directly on our website. Either way, help is on the way within minutes.` },
+    { q: `What other services do you provide?`,
+      a: `Beyond this, we provide complete towing and roadside assistance throughout ${neighborhood.name}: emergency towing, flatbed, heavy duty, motorcycle, lockouts, jump starts, tire changes, fuel delivery, winching, accident recovery, long distance transport, and more. One call handles whatever automotive problem you're facing.` },
+    { q: `How do I request service?`,
+      a: `Call ${PHONE} and tell dispatch your exact location (cross streets or address), vehicle information, and what happened. We immediately send the nearest appropriate truck and give you an ETA. You can also chat with our AI dispatcher Ayah directly on our website. Either way, help is on the way within minutes.` },
     { q: `Do you tow to any shop or only yours?`,
       a: `We tow wherever you want. Your mechanic, your dealership, your home, a collision center, an insurance-preferred shop — your call. We're a neutral service provider, not a shop trying to steer business. You choose the destination in ${neighborhood.name} or anywhere else within a reasonable range.` },
-    { q: `Will my insurance cover ${sn} in ${neighborhood.name}?`,
+    { q: `Will my insurance cover this?`,
       a: `Most comprehensive and collision policies include towing and roadside coverage, and many auto clubs (AAA, Better World, etc.) do as well. We work with all major insurance carriers and can bill directly if your policy allows. Bring your insurance card when we arrive, or have the info ready when you call dispatch, and we'll verify what's covered before we begin.` },
-    { q: `Can you tow an all-wheel-drive or 4x4 vehicle safely in ${neighborhood.name}?`,
-      a: `Yes — AWD and 4x4 vehicles generally require flatbed towing to avoid drivetrain damage, and we default to flatbed for these vehicles in ${neighborhood.name}. Our operators are trained on the specific procedures for each drive type, and we confirm the right equipment when you describe your vehicle on the dispatch call.` },
-    { q: `What do I do while I wait for the tow truck in ${neighborhood.name}?`,
+    { q: `Can you handle an AWD or 4x4 vehicle safely?`,
+      a: `Yes — AWD and 4x4 vehicles generally require flatbed transport to avoid drivetrain damage, and we default to flatbed for these in ${neighborhood.name}. Our operators are trained on the specific procedures for each drive type, and we confirm the right equipment when you describe your vehicle on the dispatch call.` },
+    { q: `What should I do while I wait?`,
       a: `Safety first: if you're on the ${highway} or any busy street, turn on hazards, exit the vehicle on the non-traffic side if possible, and wait behind the guardrail or on the sidewalk. On residential streets like ${street1}, stay with the vehicle and keep the hazards on. Our dispatcher will give you a real-time ETA and can stay on the line if you're in a stressful spot.` },
-    { q: `Do you charge extra for late-night or holiday ${sn} in ${neighborhood.name}?`,
+    { q: `Do you charge extra for late-night or holidays?`,
       a: `Our base pricing covers 24/7 service — no surprise overnight surcharge. Holidays and severe weather can add a small premium due to increased demand and safety requirements, but we disclose any adjustment upfront before we dispatch. No bait-and-switch.` },
     { q: `Can you help if my keys are locked in the car near ${landmark}?`,
       a: `Yes — we provide lockout service throughout ${neighborhood.name}, including around ${landmark}. Our operators use non-damaging tools designed for modern vehicles, so there's no risk of scratched paint or broken trim. Most lockouts in ${neighborhood.name} are resolved in under 10 minutes on site.` },
     { q: `What if my car is blocking traffic on ${street1}?`,
       a: `A vehicle blocking traffic is a priority dispatch for us. Call ${PHONE} immediately, let dispatch know it's a traffic hazard on ${street1}, and we'll route the closest truck with lights and the proper equipment to clear it fast and safely. We coordinate with NYPD when a police report is involved.` },
-    { q: `Do you do commercial or fleet ${sn} in ${neighborhood.name}?`,
+    { q: `Do you do commercial or fleet work?`,
       a: `Yes. We service commercial fleets throughout ${neighborhood.name} and ${neighborhood.region} — delivery vans, box trucks, contractor vehicles, rideshare. Net 30 billing, consolidated invoicing, and priority dispatch for contracted fleets. Contact us through ${PHONE} or the contact page to set up a commercial account.` }
   ];
 }
@@ -511,35 +509,35 @@ function buildComboPage(service, neighborhood) {
 <section class="section">
   <div class="container" style="max-width:900px;">
 
-    <h2>Professional ${service.name} Services Throughout ${neighborhood.name}, Queens</h2>
+    <h2>Professional Service Throughout ${neighborhood.name}, Queens</h2>
     <p style="font-size:1.1rem;line-height:1.85;color:#444;margin-bottom:20px;">${pickVariant(OPENING_P1_VARIANTS, s+1)(ctx)}</p>
 
     <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">${pickVariant(OPENING_P2_VARIANTS, s+2)(ctx)}</p>
 
     <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:30px;">${pickVariant(OPENING_P3_VARIANTS, s+3)(ctx)}</p>
 
-    <h2>Why ${neighborhood.name} Residents Choose Our ${service.name} Service</h2>
+    <h2>Why ${neighborhood.name} Residents Choose Us</h2>
     <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">${service.whyNeeded}</p>
     <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:30px;">${pickVariant(WHY_HERE_VARIANTS, s+4)(ctx)}</p>
 
-    <h2>Our ${service.name} Equipment and Process in ${neighborhood.name}</h2>
-    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;"><strong>Professional Equipment:</strong> ${service.equipment}. Every piece of equipment is maintained to the highest standards and inspected regularly. When we arrive in ${neighborhood.name}, we bring the right tools for your specific situation.</p>
-    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;"><strong>Step by Step Process:</strong> ${service.process}. This process has been refined over thousands of calls throughout Queens, including countless visits to ${neighborhood.name}. We handle each call with the same level of professionalism whether you're on ${street1}, near ${landmark2}, or anywhere else in the area.</p>
-    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:30px;"><strong>Vehicles We Service:</strong> ${service.vehicleTypes}. Every vehicle type that drives through ${neighborhood.name} is a vehicle we can help. Our drivers are trained on multiple vehicle types and our equipment accommodates everything from small sedans to large commercial vehicles.</p>
+    <h2>Equipment and Process in ${neighborhood.name}</h2>
+    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;"><strong>What we bring:</strong> ${service.equipment}. Every piece is maintained to the highest standards and inspected regularly. When we arrive, we bring the right tools for your specific situation.</p>
+    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;"><strong>How we work:</strong> ${service.process}. This approach has been refined over thousands of calls throughout Queens, including countless visits to ${neighborhood.name}. Same professionalism whether you're on ${street1}, near ${landmark2}, or anywhere else in the area.</p>
+    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:30px;"><strong>Vehicles we handle:</strong> ${service.vehicleTypes}. Every vehicle type that drives through the neighborhood is one we can help with. Our drivers are trained on multiple vehicle types and our equipment accommodates everything from small sedans to large commercial vehicles.</p>
 
-    <h2>Streets and Landmarks We Serve in ${neighborhood.name}</h2>
-    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">Our ${service.name.toLowerCase()} service covers every street and location in ${neighborhood.name}, Queens. We respond to calls throughout the neighborhood, with regular service to these specific locations:</p>
+    <h2>Streets and Landmarks We Cover in ${neighborhood.name}</h2>
+    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">We cover every street and location in ${neighborhood.name}, Queens. Regular service to these specific spots:</p>
     <ul style="font-size:1.05rem;line-height:1.9;color:#444;margin-bottom:20px;padding-left:20px;">
-      ${streets.map(s => `<li><strong>${s}</strong> — complete ${service.name.toLowerCase()} coverage along this corridor</li>`).join('')}
+      ${streets.map(s => `<li><strong>${s}</strong> — full coverage along this corridor</li>`).join('')}
     </ul>
-    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">Beyond the main streets, we regularly respond to calls at these landmarks and points of interest in ${neighborhood.name}:</p>
+    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">Beyond the main streets, we regularly respond to calls at these landmarks and points of interest:</p>
     <ul style="font-size:1.05rem;line-height:1.9;color:#444;margin-bottom:20px;padding-left:20px;">
-      ${landmarks.map(l => `<li><strong>${l}</strong> — fast response for any automotive emergency near this location</li>`).join('')}
+      ${landmarks.map(l => `<li><strong>${l}</strong> — fast response near this location</li>`).join('')}
     </ul>
     <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:30px;">We also handle calls on the major highways serving ${neighborhood.name}: ${highways.join(', ')}. Highway calls require special safety procedures and faster response times, and our drivers are specifically trained for these situations.</p>
 
-    <h2>Transparent ${service.name} Pricing in ${neighborhood.name}</h2>
-    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">Our ${service.name.toLowerCase()} service in ${neighborhood.name} starts at $${service.priceMin} and can go up to $${service.priceMax} depending on your specific situation. Price factors include:</p>
+    <h2>Transparent Pricing in ${neighborhood.name}</h2>
+    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">Rates in ${neighborhood.name} start at $${service.priceMin} and can go up to $${service.priceMax} depending on your specific situation. Price factors include:</p>
     <ul style="font-size:1.05rem;line-height:1.9;color:#444;margin-bottom:20px;padding-left:20px;">
       <li><strong>Distance:</strong> Local service within ${neighborhood.name} and surrounding areas costs less than long-distance transports</li>
       <li><strong>Vehicle type:</strong> Standard sedans cost less than SUVs, luxury vehicles, or commercial trucks</li>
@@ -550,31 +548,31 @@ function buildComboPage(service, neighborhood) {
     </ul>
     <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:30px;">We believe in transparent pricing. Before we begin any work in ${neighborhood.name}, we'll tell you exactly what the service will cost. No hidden fees, no surprise charges, no bait-and-switch pricing. Call ${PHONE} for a firm quote specific to your situation in ${neighborhood.name}.</p>
 
-    <h2>Real ${service.name} Scenarios We Handle in ${neighborhood.name}</h2>
+    <h2>Real Scenarios We Handle in ${neighborhood.name}</h2>
     ${scenarios.map(sc => `<p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">${sc}</p>`).join('')}
-    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:30px;">Whatever the situation, we've probably seen it in ${neighborhood.name} before. Beyond ${service.name.toLowerCase()}, we provide complete automotive emergency services here — if you called for one thing and it turns out you need another, we can handle it on the spot without a second dispatch.</p>
+    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:30px;">Whatever the situation, we've probably seen it in ${neighborhood.name} before. We provide complete automotive emergency services — if you called for one thing and it turns out you need another, we can handle it on the spot without a second dispatch.</p>
 
-    <h2>Licensed, Insured, and Trusted in ${neighborhood.name}</h2>
-    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">We are fully licensed, bonded, and insured to provide ${service.name.toLowerCase()} services throughout New York City, including ${neighborhood.name}. Our drivers are professionally trained, background checked, and experienced in ${service.name.toLowerCase()} procedures. When you hire us, you're protected by comprehensive insurance coverage that protects your vehicle during service.</p>
-    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">We work with all major insurance companies and can bill your insurance directly for accident-related services in ${neighborhood.name}. If you need documentation for insurance claims, we provide detailed reports that insurance adjusters need. This makes the claims process faster and smoother during an already stressful time.</p>
-    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:30px;">Our reputation is built on providing reliable, honest service throughout Queens. We maintain a 4.9 out of 5 star rating from hundreds of satisfied customers across all neighborhoods we serve. When ${neighborhood.name} residents need ${service.name.toLowerCase()}, they know they can count on us.</p>
+    <h2>Licensed, Insured, and Trusted</h2>
+    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">We are fully licensed, bonded, and insured throughout New York City. Our drivers are professionally trained, background checked, and experienced. When you hire us, you're protected by comprehensive insurance coverage that protects your vehicle.</p>
+    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">We work with all major insurance companies and can bill directly for accident-related work in ${neighborhood.name}. If you need documentation for claims, we provide detailed reports adjusters need. This makes the process faster and smoother during an already stressful time.</p>
+    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:30px;">Our reputation is built on providing reliable, honest service throughout Queens. We maintain a 4.8 out of 5 star rating from satisfied customers across all neighborhoods we serve. When ${neighborhood.name} residents need help, they know they can count on us.</p>
 
     <h2>About ${neighborhood.name}, Queens NY</h2>
     <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">${neighborhood.name} is located in ${neighborhood.region} with ZIP codes ${zip}. The neighborhood is known as a ${neighborhood.character} and features ${neighborhood.residentialFeatures}. Major commercial areas include ${neighborhood.commercialAreas}. The neighborhood is bordered and connected by major roadways including ${highways.join(', ')}.</p>
     <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:20px;">Key landmarks and points of interest in ${neighborhood.name} include ${landmarks.join(', ')}. These locations see thousands of visitors and residents daily, which means automotive emergencies can happen anywhere. We know ${neighborhood.name} intimately because we respond to calls here constantly.</p>
-    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:30px;">The main streets that define ${neighborhood.name} — ${streets.slice(0,5).join(', ')} — are all within our regular service area. Whether you need ${service.name.toLowerCase()} on a busy commercial street or a quiet residential block, we can reach you fast.</p>
+    <p style="font-size:1.05rem;line-height:1.85;color:#444;margin-bottom:30px;">The main streets that define ${neighborhood.name} — ${streets.slice(0,5).join(', ')} — are all within our regular service area. Whether you need help on a busy commercial street or a quiet residential block, we can reach you fast.</p>
 
-    <h2>Frequently Asked Questions: ${service.name} in ${neighborhood.name}</h2>
+    <h2>Frequently Asked Questions</h2>
     ${faqs.map(f => `
     <div style="margin-bottom:24px;padding:20px;background:#fff;border:1px solid #eee;border-radius:12px;">
       <h3 style="font-size:1.1rem;margin-bottom:12px;color:#0a0a0a;">${escapeHtml(f.q)}</h3>
       <p style="font-size:1rem;line-height:1.75;color:#555;">${escapeHtml(f.a)}</p>
     </div>`).join('')}
 
-    <h2>Call Now for ${service.name} in ${neighborhood.name}</h2>
+    <h2>Call Now</h2>
     <p style="font-size:1.1rem;line-height:1.85;color:#444;margin-bottom:20px;">${pickVariant(CALL_NOW_VARIANTS, s+5)(ctx)}</p>
     <div style="text-align:center;padding:40px;background:linear-gradient(135deg,#0a0a0a,#1a1a1a);border-radius:16px;margin:30px 0;">
-      <p style="color:#fff;font-size:1.2rem;margin-bottom:20px;">Need ${service.name} in ${neighborhood.name} right now?</p>
+      <p style="color:#fff;font-size:1.2rem;margin-bottom:20px;">Need help in ${neighborhood.name} right now?</p>
       <a href="${PHONE_HREF}" style="display:inline-block;background:linear-gradient(135deg,#d4a017,#b8860b);color:#0a0a0a;padding:20px 40px;border-radius:100px;font-size:1.5rem;font-weight:800;text-decoration:none;">&#9742; Call ${PHONE}</a>
       <p style="color:#999;margin-top:16px;font-size:0.9rem;">24/7 dispatch &middot; 15-30 minute response &middot; Licensed &amp; insured</p>
     </div>
